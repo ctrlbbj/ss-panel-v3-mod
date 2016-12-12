@@ -282,13 +282,6 @@
 									<i class="icon icon-lg">question_answer</i>&nbsp;工单系统
 								</a>
 							</li>
-						</ul>
-
-						
-						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">交易</a>
-						<ul class="menu-collapse collapse in" id="ui_menu_help">
-						
-						
 							<li>
 								<a href="/user/shop">
 									<i class="icon icon-lg">shop</i>&nbsp;商店
