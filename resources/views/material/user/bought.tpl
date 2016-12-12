@@ -38,6 +38,7 @@
 								<th>价格</th>
                                 <th>续费时间</th>
 								<th>续费时重置流量</th>
+								<th>购买时间</th>
                                 
                             </tr>
                             {foreach $shops as $shop}
@@ -60,6 +61,7 @@
 								{else}
 								<td>自动重置</td>
 								{/if}
+								<td>{date('Y-m-d H:i:s',$shop->datetime)}</td>
                                 
                             </tr>
                             {/foreach}

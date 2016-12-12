@@ -1066,6 +1066,22 @@ class UserController extends BaseController
 		$autorenew = $request->getParam('autorenew');
 		
 		$shop=Shop::where("id",$shop)->where("status",1)->first();
+		$timme = Bought::where("userid",$this->user->id)->orderBy("id","desc")->first(); //最近一条购买时间
+		$group = User::where("id",$this->user->id); //
+		if($group->node_group!=6 && $shop->id==4)
+		{
+			$res['ret'] = 0;
+            $res['msg'] = "您不能购买美国节点套餐";
+            return $response->getBody()->write(json_encode($res));
+			
+		}
+		else if(time()-$timme->datetime<=2419200 && $timme->shopid == $shop->id)
+		{
+			$res['ret'] = 0;
+            $res['msg'] = "距离上一次购买未满28天,不能购买同样的套餐";
+            return $response->getBody()->write(json_encode($res));
+			
+		}
 		
 		if($shop==null)
 		{
@@ -1151,6 +1167,8 @@ class UserController extends BaseController
 		
 		$res['ret'] = 1;
         $res['msg'] = "购买成功";
+		
+		Telegram::Send("姐姐姐姐，".$this->user->user_name." 大老爷买了 ".$price." 元的套餐".$shop->id."呢~");
 		
 		return $response->getBody()->write(json_encode($res));
     }
