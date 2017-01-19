@@ -60,7 +60,12 @@ class UserController extends BaseController
 		$user = $this->user;
 		
 		
-		$mu_nodes = Node::where('sort',9)->where('node_class','<=',$user->class)->get();
+		$mu_nodes = Node::where('sort',9)->where('node_class','<=',$user->class)->where("type","1")->where(
+			function ($query) use ($user) {
+				$query->where("node_group","=",$user->node_group)
+					->orWhere("node_group","=",0);
+			}
+		)->get();
 		
 		foreach($nodes as $node)
 		{
@@ -72,11 +77,23 @@ class UserController extends BaseController
 				$ary['method'] = $this->user->method;
 			}
 			
-			if(Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($user->obfs=='plain'&&$user->protocol=='origin'))
+			if(Config::get('enable_rss')=='true')
 			{
-				$ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible","",$user->protocol).":".$ary['method'].":".str_replace("_compatible","",$user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($user->obfs_param)."&remarks=".Tools::base64_url_encode($node->name);
-				$ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
-				$android_add .= $ssqr_s_new."|";
+				if($node->mu_only == 0)
+				{
+					if($node->custom_rss == 1)
+					{
+						$ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible","",$user->protocol).":".$ary['method'].":".str_replace("_compatible","",$user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($user->obfs_param)."&remarks=".Tools::base64_url_encode($node->name) . "&group=" . Tools::base64_url_encode(Config::get('appName'));
+						$ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
+						$android_add .= $ssqr_s_new."|";
+					}
+					else
+					{
+						$ssurl = $ary['server']. ":" . $ary['server_port'].":origin:".$ary['method'].":plain:".Tools::base64_url_encode($ary['password'])."/?remarks=".Tools::base64_url_encode($node->name) . "&group=" . Tools::base64_url_encode(Config::get('appName'));
+						$ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
+						$android_add .= $ssqr_s_new."|";
+					}
+				}
 			}
 			else
 			{
@@ -85,8 +102,7 @@ class UserController extends BaseController
 				$android_add .= $ssqr."|";
 			}
 			
-			
-			if($node->custom_rss == 1)
+			if($node->custom_rss == 1 && Config::get('enable_rss')=='true')
 			{
 				foreach($mu_nodes as $mu_node)
 				{
@@ -100,7 +116,7 @@ class UserController extends BaseController
 						$ary['method'] = $mu_user->method;
 					}
 					
-					$ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible","",$mu_user->protocol).":".$ary['method'].":".str_replace("_compatible","",$mu_user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($mu_user->obfs_param)."&remarks=".Tools::base64_url_encode($node->name." - ".$mu_node->server." 端口单端口多用户");
+					$ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible","",$mu_user->protocol).":".$ary['method'].":".str_replace("_compatible","",$mu_user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($mu_user->obfs_param)."&remarks=".Tools::base64_url_encode($node->name." - ".$mu_node->server." 端口单端口多用户") . "&group=" . Tools::base64_url_encode(Config::get('appName'));
 					$ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
 					$android_add .= $ssqr_s_new."|";
 				}
@@ -569,7 +585,6 @@ class UserController extends BaseController
 					$ary['local_address'] = '127.0.0.1';
 					$ary['local_port'] = 1080;
 					$ary['timeout'] = 300;	
-					$ary['fast_open'] = 'false';
 					$ary['workers'] = 1;				
 					
 					$is_mu = 0;
@@ -613,24 +628,13 @@ class UserController extends BaseController
 					
 					$json = json_encode($ary);
 					$json_show = json_encode($ary, JSON_PRETTY_PRINT);
-					if(Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($user->obfs=='plain'&&$user->protocol=='origin'))
-					{
-						
-						$ssurl = str_replace("_compatible","",$user->obfs).":".str_replace("_compatible","",$user->protocol).":".$ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port']."/".base64_encode($user->obfs_param);
-						$ssqr_s = "ss://" . base64_encode($ssurl);
-						$ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible","",$user->protocol).":".$ary['method'].":".str_replace("_compatible","",$user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($user->obfs_param)."&remarks=".Tools::base64_url_encode($node->name);
-						$ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
-						$ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
-						$ssqr = "ss://" . base64_encode($ssurl);
-						
-					}
-					else
-					{
-						$ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
-						$ssqr = "ss://" . base64_encode($ssurl);
-						$ssqr_s = "ss://" . base64_encode($ssurl);
-						$ssqr_s_new = "ss://" . base64_encode($ssurl);
-					}
+					
+					$ssurl = str_replace("_compatible","",$user->obfs).":".str_replace("_compatible","",$user->protocol).":".$ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port']."/".base64_encode($user->obfs_param);
+					$ssqr_s = "ss://" . base64_encode($ssurl);
+					$ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible","",$user->protocol).":".$ary['method'].":".str_replace("_compatible","",$user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($user->obfs_param)."&remarks=".Tools::base64_url_encode($node->name) . "&group=" . Tools::base64_url_encode(Config::get('appName'));
+					$ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
+					$ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
+					$ssqr = "ss://" . base64_encode($ssurl);
 					
 					$token_1 = LinkController::GenerateSurgeCode($ary['server'],$ary['server_port'],$this->user->id,0,$ary['method']);
 					$token_2 = LinkController::GenerateSurgeCode($ary['server'],$ary['server_port'],$this->user->id,1,$ary['method']);

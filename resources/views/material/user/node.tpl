@@ -64,7 +64,7 @@
 																{foreach $nodes as $node}
 																
 																
-																	
+																	{if $node->mu_only == 0}
 																	<div class="card">
 																		<div class="card-main">
 																			<div class="card-inner"> 
@@ -141,6 +141,8 @@
 																			
 																		</div>
 																	</div>
+																	{/if}
+																	
 																	{if $node->sort==0}
 																		{$point_node=$node}
 																	{/if}
@@ -248,7 +250,7 @@
 							</div>
 						</div>
 						
-						<div aria-hidden="true" class="modal fade" id="nodeinfo" role="dialog" tabindex="-1">
+						<div aria-hidden="true" class="modal modal-va-middle fade" id="nodeinfo" role="dialog" tabindex="-1">
 							<div class="modal-dialog modal-full">
 								<div class="modal-content">
 									<iframe class="iframe-seamless" title="Modal with iFrame" id="infoifram"></iframe>
