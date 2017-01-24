@@ -79,8 +79,6 @@
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="method">加密方式</label>
 											<select id="method" class="form-control">
-												<option value="rc4-md5">RC4-MD5</option>
-												<option value="rc4-md5-6">RC4-MD5-6</option>
 												<option value="aes-128-cfb">AES-128-CFB</option>
 												<option value="aes-192-cfb">AES-192-CFB</option>
 												<option value="aes-256-cfb">AES-256-CFB</option>
@@ -171,19 +169,14 @@
 									<div class="card-inner">
 										<p class="card-heading">SSR 协议&混淆设置</p>
 										<p>当前协议：{$user->protocol}</p>
-										<p>注意：如果需要兼容原版SS请选择带_compatible的兼容选项！</p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="protocol">协议</label>
 											<select id="protocol" class="form-control">
-												<option value="origin">origin</option>
 												<option value="verify_simple">verify_simple</option>
 												<option value="verify_deflate">verify_deflate</option>
 												<option value="verify_sha1">verify_sha1</option>
-												<option value="verify_sha1_compatible">verify_sha1_compatible</option>
 												<option value="auth_sha1">auth_sha1</option>
-												<option value="auth_sha1_compatible">auth_sha1_compatible</option>
 												<option value="auth_sha1_v2">auth_sha1_v2</option>
-												<option value="auth_sha1_v2_compatible">auth_sha1_v2_compatible</option>
 												<option value="auth_sha1_v4">auth_sha1_v4</option>
 												<option value="auth_sha1_v4_compatible">auth_sha1_v4_compatible</option>
 												<option value="auth_aes128_sha1">auth_aes128_sha1</option>
@@ -197,17 +190,12 @@
 
 									<div class="card-inner">
 										<p>当前混淆方式：{$user->obfs}</p>
-										<p>注意：如果需要兼容原版SS请选择带_compatible的兼容选项！</p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="obfs">混淆方式</label>
 											<select id="obfs" class="form-control">
-												<option value="plain">plain</option>
 												<option value="http_simple">http_simple</option>
-												<option value="http_simple_compatible">http_simple_compatible</option>
 												<option value="http_post">http_post</option>
-												<option value="http_post_compatible">http_post_compatible</option>
 												<option value="random_head">random_head</option>
-												<option value="random_head_compatible">random_head_compatible</option>
 												<option value="tls1.2_ticket_auth">tls1.2_ticket_auth</option>
 												<option value="tls1.2_ticket_auth_compatible">tls1.2_ticket_auth_compatible</option>
 											</select>
