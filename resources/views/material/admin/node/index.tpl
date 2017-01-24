@@ -41,7 +41,7 @@
                                 
                             </tr>
                             {foreach $nodes as $node}
-                            <tr>
+                            <tr {if $node->node_heartbeat!=0 && time()-$node->node_heartbeat>90}bgcolor="#e482a3"{/if}>
 								<td>
                                     <a class="btn btn-brand"  {if $node->sort==999}disabled{else}href="/admin/node/{$node->id}/edit"{/if}>编辑</a>
                                     <a class="btn btn-brand-accent" id="delete"  {if $node->sort==999}disabled{else}href="javascript:void(0);" onClick="delete_modal_show('{$node->id}')"{/if}>删除</a>
@@ -89,6 +89,10 @@
 								
 								{if $node->sort==9}
                                 <td>Shadowsocks - 单端口多用户</td>
+								{/if}
+								
+								{if $node->sort==10}
+                                <td>Shadowsocks - 中转</td>
 								{/if}
 								
 								{if $node->sort==999}
