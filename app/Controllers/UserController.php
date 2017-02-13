@@ -1428,7 +1428,7 @@ class UserController extends BaseController
 		$shop=Shop::where("id",$shop)->where("status",1)->first();
 		$timme = Bought::where("userid",$this->user->id)->orderBy("id","desc")->first(); //最近一条购买时间
 		$group = User::where("id",$this->user->id); //
-		if($group->node_group!=6 && $shop->id==4)
+		if($group->node_group!=6 and $shop->id==4)
 		{
 			$res['ret'] = 0;
             $res['msg'] = "您不能购买美国节点套餐";
