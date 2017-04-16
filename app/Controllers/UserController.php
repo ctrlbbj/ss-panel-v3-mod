@@ -262,7 +262,7 @@ class UserController extends BaseController
 //    }
     public function alipay($request, $response, $args)
     {
-		$amount=$args["amount"];
+		$amount = $request->getQueryParams()["amount"];
 		require_once(BASE_PATH."/alipay/alipay.config.php");
 		require_once(BASE_PATH."/alipay/lib/alipay_submit.class.php");
 
