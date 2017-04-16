@@ -102,13 +102,18 @@ class Pay
         
         //构造要请求的参数数组，无需改动
         $parameter = array(
-        "service" => "create_direct_pay_by_user",
-        "partner" => trim($alipay_config['partner']),
-        "notify_url"    => $alipay_config['notify_url'],
-        "return_url"    => $alipay_config['return_url'],
-        "out_trade_no"    => $out_trade_no,
-        "total_fee"    => $total_fee
-        );
+		"service" => "create_direct_pay_by_user",
+		"partner" => trim($alipay_config['partner']),
+		"seller_id"  => trim($alipay_config['partner']),
+		"payment_type"	=> "1",
+		"notify_url"	=> $alipay_config['notify_url'],
+		"return_url"	=> $alipay_config['return_url'],
+		"out_trade_no"	=> $out_trade_no,
+		"subject"	=> "Recharge",
+		"total_fee"	=> $total_fee,
+		"body"	=> "example",
+		"_input_charset"	=> trim(strtolower('utf-8'))
+		);
 
         //建立请求
         $alipaySubmit = new Spay_submit($alipay_config);
