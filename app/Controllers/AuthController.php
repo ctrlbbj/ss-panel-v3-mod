@@ -53,66 +53,66 @@ class AuthController extends BaseController
     }
     
         public function verifyLoginHandle($request, $response, $args)
-+    {
-+        // $data = $request->post('sdf');
-+        $email =  $request->getParam('email');
-+        $email = strtolower($email);
-+        $passwd = $request->getParam('passwd');
-+	//	$code = $request->getParam('code');
-+        //$rememberMe = $request->getParam('remember_me');
-+		
-+		if(Config::get('enable_geetest_login') == 'true')
-+		{
-+			$ret = Geetest::verify($request->getParam('geetest_challenge'),$request->getParam('geetest_validate'),$request->getParam('geetest_seccode'));
-+			if (!$ret) {
-+				$res['ret'] = "0";
-+				$res['msg'] = "System can't accept your auth, please retry";
-+				return $response->getBody()->write(json_encode($res));
-+			}
-+		}
-+
-+        // Handle Login
-+        $user = User::where('email','=',$email)->first();
-+
-+        if ($user == null){
-+            $rs['ret'] = "2";
-+            $rs['msg'] = "Wrong email or password";
-+            return $response->getBody()->write(json_encode($rs));
-+        }
-+
-+        if (!Hash::checkPassword($user->pass,$passwd)){
-+            $rs['ret'] = "3";
-+            $rs['msg'] = "Wrong email or password";
-+			
-+			
-+	//		$loginip=new LoginIp();
-+	//		$loginip->ip=$_SERVER["REMOTE_ADDR"];
-+	//		$loginip->userid=$user->id;
-+	//		$loginip->datetime=time();
-+	//		$loginip->type=1;
-+	//		$loginip->save();
-+			
-+            return $response->getBody()->write(json_encode($rs));
-+        }
-+        // @todo
-+		
-+		
-+        //Auth::login($user->id,$time);
-+        $rs['ret'] = "1";
-+        $rs['msg'] = "{$user->id}";
-+		
-+	//	$loginip=new LoginIp();
-+	//	$loginip->ip=$_SERVER["REMOTE_ADDR"];
-+	//	$loginip->userid=$user->id;
-+	//	$loginip->datetime=time();
-+	//	$loginip->type=0;
-+	//	$loginip->save();
-+		
-+	//	Wecenter::add($user,$passwd);
-+	//	Wecenter::Login($user,$passwd,$time);
-+		
-+        return $response->getBody()->write(json_encode($rs));
-+    }
+    {
+        // $data = $request->post('sdf');
+        $email =  $request->getParam('email');
+        $email = strtolower($email);
+        $passwd = $request->getParam('passwd');
+	//	$code = $request->getParam('code');
+        //$rememberMe = $request->getParam('remember_me');
+		
+		if(Config::get('enable_geetest_login') == 'true')
+		{
+			$ret = Geetest::verify($request->getParam('geetest_challenge'),$request->getParam('geetest_validate'),$request->getParam('geetest_seccode'));
+			if (!$ret) {
+				$res['ret'] = "0";
+				$res['msg'] = "System can't accept your auth, please retry";
+				return $response->getBody()->write(json_encode($res));
+			}
+		}
+
+        // Handle Login
+        $user = User::where('email','=',$email)->first();
+
+        if ($user == null){
+            $rs['ret'] = "2";
+            $rs['msg'] = "Wrong email or password";
+            return $response->getBody()->write(json_encode($rs));
+        }
+
+        if (!Hash::checkPassword($user->pass,$passwd)){
+            $rs['ret'] = "3";
+            $rs['msg'] = "Wrong email or password";
+			
+			
+	//		$loginip=new LoginIp();
+	//		$loginip->ip=$_SERVER["REMOTE_ADDR"];
+	//		$loginip->userid=$user->id;
+	//		$loginip->datetime=time();
+	//		$loginip->type=1;
+	//		$loginip->save();
+			
+            return $response->getBody()->write(json_encode($rs));
+        }
+        // @todo
+		
+		
+        //Auth::login($user->id,$time);
+        $rs['ret'] = "1";
+        $rs['msg'] = "{$user->id}";
+		
+	//	$loginip=new LoginIp();
+	//	$loginip->ip=$_SERVER["REMOTE_ADDR"];
+	//	$loginip->userid=$user->id;
+	//	$loginip->datetime=time();
+	//	$loginip->type=0;
+	//	$loginip->save();
+		
+	//	Wecenter::add($user,$passwd);
+	//	Wecenter::Login($user,$passwd,$time);
+		
+        return $response->getBody()->write(json_encode($rs));
+    }
 
     public function loginHandle($request, $response, $args)
     {
