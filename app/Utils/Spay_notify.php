@@ -5,7 +5,6 @@ namespace App\Utils;
 class Spay_notify
 {
     protected $http_verify_url ='http://notify.alipay.com/trade/notify_query.do?';
-    protected $https_verify_url = 'https://mapi.alipay.com/gateway.do?service=notify_verify&';
 
     public function __construct($alipay_config)
     {
