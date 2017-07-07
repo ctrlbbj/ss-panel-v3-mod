@@ -255,10 +255,65 @@ class UserController extends BaseController
     }
 
 
+//    public function alipay($request, $response, $args)
+//    {
+//        $amount = $request->getQueryParams()["amount"];
+//        Pay::getGen($this->user, $amount);
+//    }
     public function alipay($request, $response, $args)
     {
-        $amount = $request->getQueryParams()["amount"];
-        Pay::getGen($this->user, $amount);
+		$amount=$args["amount"];
+		require_once(BASE_PATH."/alipay/alipay.config.php");
+		require_once(BASE_PATH."/alipay/lib/alipay_submit.class.php");
+
+		/**************************请求参数**************************/
+		
+		
+		$pl = new Paylist();
+		$pl->userid = $this->user->id;
+		$pl->total = $amount;
+		$pl->save();
+		
+		//商户订单号，商户网站订单系统中唯一订单号，必填
+		$out_trade_no = $pl->id;
+
+		//订单名称，必填
+		$subject = $pl->id."UID".$this->user->id." 充值".$amount."元";
+
+		//付款金额，必填
+		$total_fee = (float)$amount;
+
+		//商品描述，可空
+		$body = $this->user->id;
+
+
+
+		
+
+		/************************************************************/
+
+		//构造要请求的参数数组，无需改动
+		$parameter = array(
+		"service" => "create_direct_pay_by_user",
+		"partner" => trim($alipay_config['partner']),
+		"seller_id"  => trim($alipay_config['partner']),
+		"payment_type"	=> "1",
+		"notify_url"	=> $alipay_config['notify_url'],
+		"return_url"	=> $alipay_config['return_url'],
+		// "anti_phishing_key"=>$alipay_config['anti_phishing_key'],
+		// "exter_invoke_ip"=>$alipay_config['exter_invoke_ip'],
+		"out_trade_no"	=> $out_trade_no,
+		"subject"	=> "Recharge",
+		"total_fee"	=> $total_fee,
+		"body"	=> "example",
+		"_input_charset"	=> trim(strtolower('utf-8'))
+		);
+
+		//建立请求
+		$alipaySubmit = new \SPAYSubmit($alipay_config);
+		$html_text = $alipaySubmit->buildRequestForm($parameter,"get", "确认");
+		echo $html_text;
+		exit(0);
     }
 
 
