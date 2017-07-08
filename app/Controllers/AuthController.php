@@ -227,7 +227,8 @@ class AuthController extends BaseController
         $ary = $request->getQueryParams();
         $code = "";
         if (isset($ary['code'])) {
-            $code = $ary['code'];
+            $antiXss = new AntiXSS();
+            $code = $antiXss->xss_clean($ary['code']);
         }
 
         $uid = time().rand(1, 10000) ;
@@ -439,7 +440,7 @@ class AuthController extends BaseController
         $group=Config::get('ramdom_group');
         $Garray=explode(",", $group);
 
-        $user->node_group=$group[rand(0, count($group)-1)];
+        $user->node_group=$Garray[rand(0, count($group)-1)];
 
         $ga = new GA();
         $secret = $ga->createSecret();

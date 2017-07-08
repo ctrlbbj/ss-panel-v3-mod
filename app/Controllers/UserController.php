@@ -62,29 +62,42 @@ class UserController extends BaseController
         $Speedtest['Uspeed']=Speedtest::where("datetime",">",time()-6*3600)->orderBy("unicomupload","desc")->take(3);
         $Speedtest['Cspeed']=Speedtest::where("datetime",">",time()-6*3600)->orderBy("cmccupload","desc")->take(3);*/
 
-        $nodes=Node::where(
-            function ($query) {
-                $query->where('sort', 0)
-                    ->orwhere('sort', 10);
-            }
-        )->where(
-            function ($query) {
-                $query->where("node_group", "=", $this->user->node_group)
-                    ->orWhere("node_group", "=", 0);
-            }
-        )->where("type", "1")->where("node_class", "<=", $this->user->class)->get();
+        if ($this->user->is_admin) {
+            $nodes=Node::where(
+                function ($query) {
+                    $query->where('sort', 0)
+                        ->orwhere('sort', 10);
+                }
+            )->where("type", "1")->get();
+        } else {
+            $nodes=Node::where(
+                function ($query) {
+                    $query->where('sort', 0)
+                        ->orwhere('sort', 10);
+                }
+            )->where(
+                function ($query) {
+                    $query->where("node_group", "=", $this->user->node_group)
+                        ->orWhere("node_group", "=", 0);
+                }
+            )->where("type", "1")->where("node_class", "<=", $this->user->class)->get();
+        }
+
         $android_add="";
         $android_add_without_mu = "";
 
         $user = $this->user;
 
-
-        $mu_nodes = Node::where('sort', 9)->where('node_class', '<=', $user->class)->where("type", "1")->where(
-            function ($query) use ($user) {
-                $query->where("node_group", "=", $user->node_group)
-                    ->orWhere("node_group", "=", 0);
-            }
-        )->get();
+        if ($this->user->is_admin) {
+            $mu_nodes = Node::where('sort', 9)->where("type", "1")->get();
+        } else {
+            $mu_nodes = Node::where('sort', 9)->where('node_class', '<=', $user->class)->where("type", "1")->where(
+                function ($query) use ($user) {
+                    $query->where("node_group", "=", $user->node_group)
+                        ->orWhere("node_group", "=", 0);
+                }
+            )->get();
+        }
 
         $relay_rules = Relay::where('user_id', $this->user->id)->orwhere('user_id', 0)->orderBy('id', 'asc')->get();
 
@@ -101,7 +114,7 @@ class UserController extends BaseController
                 $ary['method'] = $this->user->method;
             }
 
-            if ($node->mu_only == 0) {
+            if ($node->mu_only != 1) {
                 if ($node->custom_rss == 1) {
                     $node_name = $node->name;
 
@@ -128,7 +141,7 @@ class UserController extends BaseController
             }
 
 
-            if ($node->custom_rss == 1) {
+            if ($node->custom_rss == 1 && $node->mu_only != -1) {
                 foreach ($mu_nodes as $mu_node) {
                     $mu_user = User::where('port', '=', $mu_node->server)->first();
 
@@ -180,6 +193,7 @@ class UserController extends BaseController
         $router_token = LinkController::GenerateRouterCode($this->user->id, 0);
         $router_token_without_mu = LinkController::GenerateRouterCode($this->user->id, 1);
 
+        $ssr_sub_token = LinkController::GenerateSSRSubCode($this->user->id, 0);
 
         $uid = time().rand(1, 10000) ;
         if (Config::get('enable_geetest_checkin') == 'true') {
@@ -191,7 +205,7 @@ class UserController extends BaseController
         $Ann = Ann::orderBy('date', 'desc')->first();
 
 
-        return $this->view()->assign("router_token", $router_token)->assign("router_token_without_mu", $router_token_without_mu)->assign("acl_token", $acl_token)->assign('ann', $Ann)->assign('geetest_html', $GtSdk)->assign("ios_token", $ios_token)->assign("android_add", $android_add)->assign("android_add_without_mu", $android_add_without_mu)->assign('enable_duoshuo', Config::get('enable_duoshuo'))->assign('duoshuo_shortname', Config::get('duoshuo_shortname'))->assign('baseUrl', Config::get('baseUrl'))->display('user/index.tpl');
+        return $this->view()->assign("ssr_sub_token", $ssr_sub_token)->assign("router_token", $router_token)->assign("router_token_without_mu", $router_token_without_mu)->assign("acl_token", $acl_token)->assign('ann', $Ann)->assign('geetest_html', $GtSdk)->assign("ios_token", $ios_token)->assign("android_add", $android_add)->assign("android_add_without_mu", $android_add_without_mu)->assign('enable_duoshuo', Config::get('enable_duoshuo'))->assign('duoshuo_shortname', Config::get('duoshuo_shortname'))->assign('baseUrl', Config::get('baseUrl'))->display('user/index.tpl');
     }
 
 
@@ -443,12 +457,16 @@ class UserController extends BaseController
     public function node($request, $response, $args)
     {
         $user = Auth::getUser();
-        $nodes = Node::where(
-            function ($query) {
-                $query->Where("node_group", "=", $this->user->node_group)
-                    ->orWhere("node_group", "=", 0);
-            }
-        )->where('type', 1)->where("node_class", "<=", $this->user->class)->orderBy('name')->get();
+        if ($user->is_admin) {
+            $nodes = Node::where('type', 1)->orderBy('name')->get();
+        } else {
+            $nodes = Node::where(
+                function ($query) {
+                    $query->Where("node_group", "=", $this->user->node_group)
+                        ->orWhere("node_group", "=", 0);
+                }
+            )->where('type', 1)->where("node_class", "<=", $this->user->class)->orderBy('name')->get();
+        }
 
         $relay_rules = Relay::where('user_id', $this->user->id)->orwhere('user_id', 0)->orderBy('id', 'asc')->get();
 
@@ -466,17 +484,21 @@ class UserController extends BaseController
         $node_bandwidth=array();
         $node_muport=array();
 
-        $ports_count = Node::where(
-            function ($query) use ($user) {
-                $query->Where("node_group", "=", $user->node_group)
-                    ->orWhere("node_group", "=", 0);
-            }
-        )->where('type', 1)->where('sort', 9)->where("node_class", "<=", $user->class)->orderBy('name')->count();
+        if ($user->is_admin) {
+            $ports_count = Node::where('type', 1)->where('sort', 9)->orderBy('name')->count();
+        } else {
+            $ports_count = Node::where(
+                function ($query) use ($user) {
+                    $query->Where("node_group", "=", $user->node_group)
+                        ->orWhere("node_group", "=", 0);
+                }
+            )->where('type', 1)->where('sort', 9)->where("node_class", "<=", $user->class)->orderBy('name')->count();
+        }
 
         $ports_count += 1;
 
         foreach ($nodes as $node) {
-            if ($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0)&&(!$node->isNodeTrafficOut())) {
+            if ((($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0))||$user->is_admin)&&(!$node->isNodeTrafficOut())) {
                 if ($node->sort==9) {
                     $mu_user=User::where('port', '=', $node->server)->first();
                     $mu_user->obfs_param=$this->user->getMuMd5();
@@ -567,7 +589,7 @@ class UserController extends BaseController
         switch ($node->sort) {
 
             case 0:
-                if ($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0)&&($node->node_bandwidth_limit==0||$node->node_bandwidth<$node->node_bandwidth_limit)) {
+                if ((($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0))||$user->is_admin)&&($node->node_bandwidth_limit==0||$node->node_bandwidth<$node->node_bandwidth_limit)) {
                     $ary['server'] = $node->server;
                     $ary['local_address'] = '127.0.0.1';
                     $ary['local_port'] = 1080;
@@ -589,6 +611,10 @@ class UserController extends BaseController
                             $ary['protocol'] = str_replace("_compatible", "", $this->user->protocol);
                         }
                     } else {
+                        if ($node->mu_only == -1) {
+                            return;
+                        }
+
                         $mu_user = User::where('port', '=', $mu)->where("is_multi_user", "<>", 0)->first();
 
                         if ($mu_user == null) {
@@ -632,8 +658,6 @@ class UserController extends BaseController
                     $json = json_encode($ary);
                     $json_show = json_encode($ary, JSON_PRETTY_PRINT);
 
-                    $ssurl = str_replace("_compatible", "", $user->obfs).":".str_replace("_compatible", "", $user->protocol).":".$ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port']."/".base64_encode($user->obfs_param);
-                    $ssqr_s = "ss://" . base64_encode($ssurl);
                     $ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible", "", $user->protocol).":".$ary['method'].":".str_replace("_compatible", "", $user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($user->obfs_param)."&protoparam=".Tools::base64_url_encode($user->protocol_param)."&remarks=".Tools::base64_url_encode($node->name) . "&group=" . Tools::base64_url_encode(Config::get('appName'));
                     $ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
                     $ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
@@ -646,7 +670,7 @@ class UserController extends BaseController
                     $surge_proxy = "#!PROXY-OVERRIDE:ProxyBase.conf\n";
                     $surge_proxy .= "[Proxy]\n";
                     $surge_proxy .= "Proxy = custom," . $ary['server'] . "," . $ary['server_port'] . "," . $ary['method'] . "," . $ary['password'] . "," . Config::get('baseUrl') . "/downloads/SSEncrypt.module";
-                    return $this->view()->assign('ary', $ary)->assign('mu', $is_mu)->assign('node', $node)->assign('user', $user)->assign('json', $json)->assign('link1', Config::get('baseUrl')."/link/".$token_1)->assign('link2', Config::get('baseUrl')."/link/".$token_2)->assign('json_show', $json_show)->assign('ssqr', $ssqr)->assign('ssqr_s_new', $ssqr_s_new)->assign('ssqr_s', $ssqr_s)->assign('surge_base', $surge_base)->assign('surge_proxy', $surge_proxy)->assign('info_server', $ary['server'])->assign('info_port', $this->user->port)->assign('info_method', $ary['method'])->assign('info_pass', $this->user->passwd)->display('user/nodeinfo.tpl');
+                    return $this->view()->assign('ary', $ary)->assign('mu', $is_mu)->assign('node', $node)->assign('user', $user)->assign('json', $json)->assign('link1', Config::get('baseUrl')."/link/".$token_1)->assign('link2', Config::get('baseUrl')."/link/".$token_2)->assign('json_show', $json_show)->assign('ssqr', $ssqr)->assign('ssqr_s_new', $ssqr_s_new)->assign('surge_base', $surge_base)->assign('surge_proxy', $surge_proxy)->assign('info_server', $ary['server'])->assign('info_port', $this->user->port)->assign('info_method', $ary['method'])->assign('info_pass', $this->user->passwd)->display('user/nodeinfo.tpl');
                 }
             break;
 
@@ -757,7 +781,7 @@ class UserController extends BaseController
 
 
             case 10:
-                if ($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0)&&($node->node_bandwidth_limit==0||$node->node_bandwidth<$node->node_bandwidth_limit)) {
+                if ((($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0))||$user->is_admin)&&($node->node_bandwidth_limit==0||$node->node_bandwidth<$node->node_bandwidth_limit)) {
                     $relay_rule = Relay::where('id', $relay_rule_id)->where(
                         function ($query) use ($user) {
                             $query->Where("user_id", "=", $user->id)
@@ -790,6 +814,10 @@ class UserController extends BaseController
                             $ary['protocol'] = str_replace("_compatible", "", $this->user->protocol);
                         }
                     } else {
+                        if ($node->mu_only == -1) {
+                            return;
+                        }
+
                         $mu_user = User::where('port', '=', $mu)->where("is_multi_user", "<>", 0)->first();
 
                         if ($mu_user == null) {
@@ -830,8 +858,6 @@ class UserController extends BaseController
                     $json = json_encode($ary);
                     $json_show = json_encode($ary, JSON_PRETTY_PRINT);
 
-                    $ssurl = str_replace("_compatible", "", $user->obfs).":".str_replace("_compatible", "", $user->protocol).":".$ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port']."/".base64_encode($user->obfs_param);
-                    $ssqr_s = "ss://" . base64_encode($ssurl);
                     $ssurl = $ary['server']. ":" . $ary['server_port'].":".str_replace("_compatible", "", $user->protocol).":".$ary['method'].":".str_replace("_compatible", "", $user->obfs).":".Tools::base64_url_encode($ary['password'])."/?obfsparam=".Tools::base64_url_encode($user->obfs_param)."&protoparam=".Tools::base64_url_encode($user->protocol_param)."&remarks=".Tools::base64_url_encode($node->name) . "&group=" . Tools::base64_url_encode(Config::get('appName'));
                     $ssqr_s_new = "ssr://" . Tools::base64_url_encode($ssurl);
                     $ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
@@ -844,7 +870,7 @@ class UserController extends BaseController
                     $surge_proxy = "#!PROXY-OVERRIDE:ProxyBase.conf\n";
                     $surge_proxy .= "[Proxy]\n";
                     $surge_proxy .= "Proxy = custom," . $ary['server'] . "," . $ary['server_port'] . "," . $ary['method'] . "," . $ary['password'] . "," . Config::get('baseUrl') . "/downloads/SSEncrypt.module";
-                    return $this->view()->assign('ary', $ary)->assign('mu', $is_mu)->assign('node', $node)->assign('user', $user)->assign('json', $json)->assign('link1', Config::get('baseUrl')."/link/".$token_1)->assign('link2', Config::get('baseUrl')."/link/".$token_2)->assign('json_show', $json_show)->assign('ssqr', $ssqr)->assign('ssqr_s_new', $ssqr_s_new)->assign('ssqr_s', $ssqr_s)->assign('surge_base', $surge_base)->assign('surge_proxy', $surge_proxy)->assign('info_server', $ary['server'])->assign('info_port', $this->user->port)->assign('info_method', $ary['method'])->assign('info_pass', $this->user->passwd)->display('user/nodeinfo.tpl');
+                    return $this->view()->assign('ary', $ary)->assign('mu', $is_mu)->assign('node', $node)->assign('user', $user)->assign('json', $json)->assign('link1', Config::get('baseUrl')."/link/".$token_1)->assign('link2', Config::get('baseUrl')."/link/".$token_2)->assign('json_show', $json_show)->assign('ssqr', $ssqr)->assign('ssqr_s_new', $ssqr_s_new)->assign('surge_base', $surge_base)->assign('surge_proxy', $surge_proxy)->assign('info_server', $ary['server'])->assign('info_port', $this->user->port)->assign('info_method', $ary['method'])->assign('info_pass', $this->user->passwd)->display('user/nodeinfo.tpl');
                 }
             break;
 
@@ -861,29 +887,52 @@ class UserController extends BaseController
         $without_mu = $request->getQueryParams()["without_mu"];
 
         $newResponse = $response->withHeader('Content-type', ' application/octet-stream')->withHeader('Content-Disposition', ' attachment; filename=gui-config.json');//->getBody()->write($builder->output());
-        $newResponse->getBody()->write(LinkController::GetPcConf(Node::where(
-            function ($query) {
-                $query->where('sort', 0)
-                    ->orWhere('sort', 10);
-            }
-        )->where("type", "1")->where(
-            function ($query) {
-                $query->where("node_group", "=", $this->user->node_group)
-                    ->orWhere("node_group", "=", 0);
-            }
-        )->where("node_class", "<=", $this->user->class)->get(), $this->user, $without_mu));
+        if ($this->user->is_admin) {
+            $newResponse->getBody()->write(LinkController::GetPcConf(Node::where(
+                function ($query) {
+                    $query->where('sort', 0)
+                        ->orWhere('sort', 10);
+                }
+            )->where("type", "1")->get(), $this->user, $without_mu));
+        } else {
+            $newResponse->getBody()->write(LinkController::GetPcConf(Node::where(
+                function ($query) {
+                    $query->where('sort', 0)
+                        ->orWhere('sort', 10);
+                }
+            )->where("type", "1")->where(
+                function ($query) {
+                    $query->where("node_group", "=", $this->user->node_group)
+                        ->orWhere("node_group", "=", 0);
+                }
+            )->where("node_class", "<=", $this->user->class)->get(), $this->user, $without_mu));
+        }
         return $newResponse;
     }
 
     public function GetIosConf($request, $response, $args)
     {
         $newResponse = $response->withHeader('Content-type', ' application/octet-stream')->withHeader('Content-Disposition', ' attachment; filename=allinone.conf');//->getBody()->write($builder->output());
-        $newResponse->getBody()->write(LinkController::GetIosConf(Node::where('sort', 0)->where("type", "1")->where(
-            function ($query) {
-                $query->where("node_group", "=", $this->user->node_group)
-                    ->orWhere("node_group", "=", 0);
-            }
-        )->where("node_class", "<=", $this->user->class)->get(), $this->user));
+        if ($this->user->is_admin) {
+            $newResponse->getBody()->write(LinkController::GetIosConf(Node::where(
+                function ($query) {
+                    $query->where('sort', 0)
+                        ->orWhere('sort', 10);
+                }
+            )->where("type", "1")->get(), $this->user));
+        } else {
+            $newResponse->getBody()->write(LinkController::GetIosConf(Node::where(
+                function ($query) {
+                    $query->where('sort', 0)
+                        ->orWhere('sort', 10);
+                }
+            )->where("type", "1")->where(
+                function ($query) {
+                    $query->where("node_group", "=", $this->user->node_group)
+                        ->orWhere("node_group", "=", 0);
+                }
+            )->where("node_class", "<=", $this->user->class)->get(), $this->user));
+        }
         return $newResponse;
     }
 
@@ -1468,6 +1517,14 @@ class UserController extends BaseController
 
         $user->protocol = $antiXss->xss_clean($protocol);
         $user->obfs = $antiXss->xss_clean($obfs);
+
+
+        if (!Tools::checkNoneProtocol($user)) {
+            $res['ret'] = 0;
+            $res['msg'] = "您好，系统检测到您目前的加密方式为 none ，但您将要设置为的协议并不在以下协议<br>".implode(',', Config::getSupportParam('allow_none_protocol')).'<br>之内，请您先修改您的加密方式，再来修改此处设置。';
+            return $this->echoJson($response, $res);
+        }
+
         $user->save();
 
         $res['ret'] = 1;
@@ -1587,6 +1644,14 @@ class UserController extends BaseController
             return $response->getBody()->write(json_encode($res));
         }
 
+        $user->method = $method;
+
+        if (!Tools::checkNoneProtocol($user)) {
+            $res['ret'] = 0;
+            $res['msg'] = "您好，系统检测到您将要设置的加密方式为 none ，但您的协议并不在以下协议<br>".implode(',', Config::getSupportParam('allow_none_protocol')).'<br>之内，请您先修改您的协议，再来修改此处设置。';
+            return $this->echoJson($response, $res);
+        }
+
         $user->updateMethod($method);
         $res['ret'] = 1;
         return $this->echoJson($response, $res);
@@ -1693,6 +1758,14 @@ class UserController extends BaseController
         $user->telegram_id = 0;
         $user->save();
         $newResponse = $response->withStatus(302)->withHeader('Location', '/user/edit');
+        return $newResponse;
+    }
+
+    public function resetURL($request, $response, $args)
+    {
+        $user = $this->user;
+        $user->clean_link();
+        $newResponse = $response->withStatus(302)->withHeader('Location', '/user');
         return $newResponse;
     }
 }
