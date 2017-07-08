@@ -42,6 +42,7 @@
 									<div class="card-inner margin-bottom-no">
 										<p class="card-heading">All-in-One</p>
 										<p>这里为您提供了自动化地配置文件生成，包含了所有 Shadowsocks 服务器的信息，方便您在诸多的服务器中快速添加，快速切换。</p>
+                                        <P>客户端下载地址<a href="/ss-client.7z">这里</a></p>
 										<nav class="tab-nav margin-top-no">
 											<ul class="nav nav-list">
 												<li class="active">
