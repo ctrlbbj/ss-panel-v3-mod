@@ -32,15 +32,15 @@ class Spay_notify
             }
             
             //写日志记录
-            //if ($isSign) {
-            //	$isSignStr = 'true';
-            //}
-            //else {
-            //	$isSignStr = 'false';
-            //}
-            //$log_text = "responseTxt=".$responseTxt."\n notify_url_log:isSign=".$isSignStr.",";
-            //$log_text = $log_text.Spay_tool::createLinkstring($_POST);
-            //Spay_tool::logResult($log_text);
+            // if ($isSign) {
+            // 	$isSignStr = 'true';
+            // }
+            // else {
+            // 	$isSignStr = 'false';
+            // }
+            // $log_text = "responseTxt=".$responseTxt."\n notify_url_log:isSign=".$isSignStr.",";
+            // $log_text = $log_text.Spay_tool::createLinkstring($_POST);
+            // Spay_tool::logResult($log_text);
             
             //验证
             //$responsetTxt的结果不是true，与服务器设置问题、合作身份者ID、notify_id一分钟失效有关
@@ -124,7 +124,8 @@ class Spay_notify
     public function getResponse($notify_id)
     {
         $veryfy_url = $this->http_verify_url;
-        $veryfy_url = $veryfy_url."notify_id=" . $notify_id;
+        //partner id 写死的
+        $veryfy_url = $veryfy_url."partner=2088102828835124&notify_id=" . $notify_id;
         $responseTxt = Spay_tool::getHttpResponseGET($veryfy_url);
         
         return $responseTxt;

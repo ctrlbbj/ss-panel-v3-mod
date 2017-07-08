@@ -91,7 +91,7 @@ class Pay
         $out_trade_no = $pl->id;
         
         //订单名称，必填
-        $subject = $pl->id."UID".$user->id." 充值".$amount."元";
+        $subject = "smiletsuuhan Recharge";
         
         //付款金额，必填
         $total_fee = (float)$amount;
@@ -109,9 +109,9 @@ class Pay
 		"notify_url"	=> $alipay_config['notify_url'],
 		"return_url"	=> $alipay_config['return_url'],
 		"out_trade_no"	=> $out_trade_no,
-		"subject"	=> "Recharge",
+		"subject"	=> $subject,
 		"total_fee"	=> $total_fee,
-		"body"	=> "example",
+		"body"	=> $body,
 		"_input_charset"	=> trim(strtolower('utf-8'))
 		);
 
