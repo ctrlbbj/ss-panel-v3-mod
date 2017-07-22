@@ -13,6 +13,7 @@ use App\Services\Boot;
 define('BASE_PATH', __DIR__);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define('VERSION', '20170119');
 =======
 define('VERSION', '20170131');
@@ -20,6 +21,9 @@ define('VERSION', '20170131');
 =======
 define('VERSION', '20170131');
 >>>>>>> pr/2
+=======
+define('VERSION', '20170620_1');
+>>>>>>> pr/3
 
 // Vendor Autoload
 require BASE_PATH.'/vendor/autoload.php';
