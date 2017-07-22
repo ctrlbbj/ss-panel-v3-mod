@@ -135,7 +135,6 @@
 													<div class="row">
 
 														<div class="col-md-12">
-<<<<<<< HEAD
 													<p>您要先安装 Shadowrocket 。</p>
 													先去app store上下载安装Shadowrocket
 													<p>然后配置的话，直接下载生成好的配置文件，然后在 APP 里添加设置时选择 Download configuration from URL ，把地址粘贴进去添加。</p>
@@ -143,16 +142,6 @@
 
 													<p>第二种分流方式，按照地区的文件下载地址，感谢 @Tony 提供，点击直接下载：<a href="{$link2}">{$link2}</a></p>
 													<br>
-												<div class="col-md-12">
-=======
-															<p>您要先安装 surge 。</p>
-															<p>配置的话，直接下载生成好的配置文件，然后在 APP 里添加设置时选择 Download configuration from URL ，把地址粘贴进去添加。</p>
-															<p>第一种分流方式，按照域名的文件下载地址，点击直接下载：<a href="{$link1}">{$link1}</a></p>
-
-															<p>第二种分流方式，按照地区的文件下载地址，感谢 @Tony 提供，点击直接下载：<a href="{$link2}">{$link2}</a></p>
-															<br>
-														<div class="col-md-12">
->>>>>>> pr/3
 													</div>
 												</STRIKE>
 											</div>

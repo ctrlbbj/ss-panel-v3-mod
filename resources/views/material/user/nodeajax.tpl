@@ -44,10 +44,6 @@
 				}
 				]
 			});
-			
-			
-			
-			
 			{$load=$point_node->getNodeAlive()}
 			alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
 			{
@@ -83,28 +79,9 @@
 					]
 				}
 				]
-			});
-			
-			
-			
-
-			
-			
-			
-			
-			
-			
-			
-				
+			});	
 			chart{$id}.render();
-			alive_chart{$id}.render();
-
-			
-			
+			alive_chart{$id}.render();	
 		});
-		
-		
-		
-		
-			
+	
 	</script>
