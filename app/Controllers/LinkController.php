@@ -450,6 +450,7 @@ class LinkController extends BaseController
 							}
 						}
 					}
+<<<<<<< HEAD
 				}
 			}
 		}
@@ -527,11 +528,89 @@ class LinkController extends BaseController
 												
 					}
 					
+=======
+>>>>>>> pr/2
 				}
 			}
 		}
 		
 		
+<<<<<<< HEAD
+=======
+		foreach($relay_nodes as $node)
+		{
+			$rules = Relay::where(
+				function ($query) use ($node){
+					$query->Where("source_node_id","=",$node->id)
+						->orWhere("source_node_id","=",0);
+				}
+			)->where('port', $user->port)->where('user_id', $user->id)->first();
+			if($rules == NULL)
+			{
+				array_push($temparray,array("remarks"=>$node->name,
+											"server"=>$node->server,
+											"server_port"=>$user->port,
+											"method"=>($node->custom_method==1?$user->method:$node->method),
+											"obfs"=>str_replace("_compatible","",((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($user->obfs=='plain'&&$user->protocol=='origin'))?$user->obfs:"plain")),
+											"obfsparam"=>((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($user->obfs=='plain'&&$user->protocol=='origin'))?$user->obfs_param:""),
+											"remarks_base64"=>base64_encode($node->name),
+											"password"=>$user->passwd,
+											"tcp_over_udp"=>false,
+											"udp_over_tcp"=>false,
+											"group"=>Config::get('appName'),
+											"protocol"=>str_replace("_compatible","",((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($user->obfs=='plain'&&$user->protocol=='origin'))?$user->protocol:"origin")),
+											"obfs_udp"=>false,
+											"enable"=>true));
+			}
+			
+			if($node->custom_rss == 1&& $without_mu == 0)
+			{
+				foreach($mu_nodes as $mu_node)
+				{
+					$mu_user = User::where('port','=',$mu_node->server)->first();
+					if($mu_user->is_multi_user == 1)
+					{
+						$mu_user->obfs_param = $user->getMuMd5();
+						$mu_user->protocol_param = $user->id.":".$user->passwd;
+					}
+					else
+					{
+						$mu_user->obfs_param = "";
+						$mu_user->protocol_param = $user->id.":".$user->passwd;
+					}
+					
+					$rules = Relay::where(
+						function ($query) use ($node){
+							$query->Where("source_node_id","=",$node->id)
+								->orWhere("source_node_id","=",0);
+						}
+					)->where('port', $mu_user->port)->where('user_id', $user->id)->first();
+					if($rules == NULL)
+					{
+						array_push($temparray,array("remarks"=>$node->name."- ".$mu_node->server." 端口单端口多用户",
+													"server"=>$node->server,
+													"server_port"=>$mu_user->port,
+													"method"=>$mu_user->method,
+													"group"=>Config::get('appName'),
+													"obfs"=>str_replace("_compatible","",((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($mu_user->obfs=='plain'&&$mu_user->protocol=='origin'))?$mu_user->obfs:"plain")),
+													"obfsparam"=>((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($mu_user->obfs=='plain'&&$mu_user->protocol=='origin'))?$mu_user->obfs_param:""),
+													"remarks_base64"=>base64_encode($node->name."- ".$mu_node->server." 端口单端口多用户"),
+													"password"=>$mu_user->passwd,
+													"tcp_over_udp"=>false,
+													"udp_over_tcp"=>false,
+													"protocol"=>str_replace("_compatible","",((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($mu_user->obfs=='plain'&&$mu_user->protocol=='origin'))?$mu_user->protocol:"origin")),
+													"protocolparam"=>((Config::get('enable_rss')=='true'&&$node->custom_rss==1&&!($mu_user->obfs=='plain'&&$mu_user->protocol=='origin'))?$mu_user->protocol_param:""),
+													"obfs_udp"=>false,
+													"enable"=>true));
+												
+					}
+					
+				}
+			}
+		}
+		
+		
+>>>>>>> pr/2
 		
 		$json["configs"]=$temparray;
         return json_encode($json,JSON_PRETTY_PRINT);

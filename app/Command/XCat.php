@@ -87,10 +87,14 @@ class XCat
 	public function initdownload()
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		system('git clone https://github.com/glzjin/panel-download.git '.BASE_PATH."/public/ssr-download/", $ret);
 =======
 		system('git clone https://github.com/esdeathlove/panel-download.git '.BASE_PATH."/public/ssr-download/", $ret);
 >>>>>>> pr/1
+=======
+		system('git clone https://github.com/esdeathlove/panel-download.git '.BASE_PATH."/public/ssr-download/", $ret);
+>>>>>>> pr/2
 		echo $ret;
 	}
 
@@ -186,10 +190,14 @@ class XCat
 		$newmd5 = md5($copywrite);
 		file_put_contents(BASE_PATH."/storage/qqwry.md5",$newmd5);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$qqwry = file_get_contents("http://update.cz88.net/ip/qqwry.rar");
 =======
 		$qqwry = file_get_contents("https://github.com/esdeathlove/qqwry-download/raw/master/qqwry.rar");
 >>>>>>> pr/1
+=======
+		$qqwry = file_get_contents("https://github.com/esdeathlove/qqwry-download/raw/master/qqwry.rar");
+>>>>>>> pr/2
 		if($qqwry != "")
 		{
 			$key = unpack("V6", $copywrite)[6];
