@@ -287,7 +287,7 @@ class Job
                 $user->disconnect_ip = null;
             }
 
-            $user->save();
+            //$user->save();
 
             $disconnected->delete();
         }

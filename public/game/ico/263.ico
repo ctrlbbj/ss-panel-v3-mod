@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/assets/28bce535/jquery.min.js"></script>
+<title>lonlife珑凌/玲珑网游加速器-最稳定的游戏加速器【官方网站】</title>
+    <meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="keywords" content="网游加速器，游戏加速器，加速器，玲珑,网络加速器,lol,英雄联盟,玲珑网游加速器，美服" />
+    <meta name="description" content="最稳定的游戏加速器-玲珑网游加速器。专业提供暗黑3、台服、美服等网游加速器。有效解决延迟高,掉线,卡屏等问题。" />
+    <meta name="baidu-site-verification" content="JBNRO8hDM0" />
+    <link rel="shortcut icon" href="/lonlife.ico">
+    <link rel="stylesheet" type="text/css" href="/css/lonlifenew5/common.css?v=8">
+    <script type="text/javascript" src="/js/lonlifenew5/min/pay.min.js?v=11"></script> <!--add-->
+    <link rel="stylesheet" href="/css/lonlifenew5/stepv2.css?v=13">                                      <!--add-->
+<!--    <script type="text/javascript" src="/js/lonlifenew5/jquery-1.11.1.min.js"></script>-->
+    <script type="text/javascript" src="/js/chat_version2/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/lonlifenew5/min/common.min.js?v=4"></script>
+    <style>
+        .top-bar .lan-flag{
+            float: right;
+            width: 46px;
+            height: 20px;
+            margin-top: 7px;
+        }
+        .lan-flag .lan-icon{
+            background-image: url(/images/shouye20161014/english/lan-flagv2.png);
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        .lan-flag .lan-zh{
+            margin-right: 6px;
+        }
+        .lan-flag .lan-en{
+            background-position:-26px 0;
+        }
+        
+        /*送时间弹窗样式*/
+        .st-dg-modal {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            z-index: 10001;
+            display: none;
+            width: 450px;
+            margin-left: -225px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .st-dg-modal-header{
+            background-color: #3886d6;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            color: #fff;
+        }
+        .st-dg-modal-body{
+            padding: 24px 35px;
+            text-align:center;
+        }
+        .st-dg-info{
+            text-align: center;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .st-dg-info a{
+            color: #3697d9;
+        }
+        .st-dg-close{
+            border: 0;
+            background: 0 0;
+            padding: 0;
+            cursor: pointer;
+            float: right;
+            margin-top: 4px;
+            font-size: 30px;
+            color: #fff;
+        }
+        .st-dg-btn{
+            display: inline-block;
+            width: 120px;
+            height: 35px;
+            margin: 36px auto 0;
+            letter-spacing: 0;
+            font-size: 14px;
+            line-height: 35px;
+            border:none;
+            border-radius:5px;
+            color:#fff;
+            background:#3697d9;
+        }
+        .st-dg-modal-title{
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .st-dg-modal-overlay{
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            background-color: #000;
+        }
+        .st-dg-in{
+            display: block;
+            opacity: .4;
+            filter: alpha(opacity=40);
+        }
+    </style>
+</head>
+<body>
+        <!-- 页面公共部分 顶部 begin -->
+    <div class="top-bar" style="width:100%;background:#fff;">
+        <div style="width:1000px;margin:0 auto;">
+            <div class="tips">玲珑网游加速器——让网游在你身边！</div>
+            <div class="lan-flag"><a class="lan-icon lan-zh" href="/en/change?lang=zh&url=/"></a><a class="lan-icon lan-en" href="/en/change?lang=en&url=/"></a></div>
+<!--            <a href="/oversea" target="_blank" style="float:right;color: #e74c3c;background: url(/images/lonlifenew5/icon.png) no-repeat -237px -331px;padding-right: 18px;">海外用户</a>-->
+
+            <div class="links"><a href="/user/index">个人中心</a><span>|</span><a href="/faq/new" target='_blank'>新手帮助</a><span>|</span><a href="/oversea" target='_blank'>海外玩家</a><span>|</span></div>
+            <div id="j-login-bar" class="login-bar">您好，欢迎来到玲珑！<a class="login" href="/user/login">[登录]</a><a class="reg" href="/user/register">[注册]</a></div>
+        </div>
+    </div>
+                <div id="nav">
+                    <div class="nav-bg-wrap">
+                        <div class="nav-wrap">
+                            <div class="logo-box">
+                                <!--5.0-->
+                                <a href="/"><img src="/images/logo.png" alt=""></a>
+                                <!--<a href="/"><img src="/images/201751/logo.png" alt=""></a>-->
+                            </div>
+                            <ul class="nav-box">
+                                <li class="nav-li">
+                                    <a href="/">首页</a>
+                                                                        <ul class="sub-nav">
+                                                                                <li><a href="/mac">MAC版首页</a></li>
+                                                                                <li><a href="/download">历史版本</a></li>
+                                                                            </ul>
+                                                                    </li>
+                                <li class="nav-li">
+                                    <a href="/try">产品介绍</a>
+                                                                         <ul class="sub-nav">
+                                                                                <li><a href="/try">产品介绍</a></li>
+                                                                                <li><a href="/yuanli">加速原理</a></li>
+                                                                                <li><a href="/oversea">海外玩家</a></li>
+                                                                            </ul>
+                                                                    </li>
+                                <li class="nav-li">
+                                    <a href="/pay">充值续费</a>
+                                                                         <ul class="sub-nav">
+                                                                                <li><a href="/pay">在线充值</a></li>
+                                                                                <li><a href="/c">卡密充值</a></li>
+                                                                            </ul>
+                                                                    </li>
+                                <li class="nav-li">
+                                    <a href="/game">支持游戏</a>
+                                                                        <ul class="sub-nav">
+                                                                                <li><a href="/game/usa">欧美游戏</a></li>
+                                                                                <li><a href="/game/hk">港台游戏</a></li>
+                                                                                <li><a href="/game/china">国服游戏</a></li>
+                                                                                <li><a href="/game/all">其他游戏</a></li>
+                                                                            </ul>
+                                                                    </li>
+                                <li class="nav-li">
+                                    <a href="/faq">帮助中心</a>
+                                                                        <ul class="sub-nav">
+                                                                                <li><a href="/faq">常见问题</a></li>
+                                                                                <li><a href="/recharge">充值问题</a></li>
+                                                                                <li><a href="/faq/refund">退款保障</a></li>
+                                                                            </ul>
+                                                                    </li>
+                                <li class="nav-li">
+                                    <a href="/contactus">关于我们</a><a href="/campus" target="_blank" style="display:inline-block; position:absolute; top:45px; left:98px; z-index:2; width:auto;height:auto; line-height:17px; outline:none;"><img src="/images/shouye_new/zhaopin-icon.png" alt="" /></a>
+                                                                        <ul class="sub-nav">
+                                                                                <li><a href="/contactus">公司介绍</a></li>
+                                                                                <li><a href="http://www.ifrog.cc">玲珑学院</a></li>
+                                                                                <li><a href="/campus">校园招聘</a></li>
+                                                                                <li><a href="/contactus/joinus">社会招聘</a></li>
+                                                                                <li><a href="/contactus/contactus">联系我们</a></li>
+                                                                            </ul>
+                                                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <link rel="stylesheet" href="/css/lonlifenew5/index_oversea.css?v=19">
+            <script type="text/javascript" src="/js/lonlifenew5/index_oversea.js"></script>
+        <div class="user-box-bg" style="display:none;"></div>
+    <div id="user-box" style="display:none;">
+        <div class="user-tit">
+            <span class="on">登录</span>
+            <span class="">快速注册</span>
+        </div>
+        <div class="user-form">
+            <form class="form-login"  >
+                <p class="error-info">
+                </p>
+                <p class="normal"><input type="text" id="count" placeholder="请输入玲珑帐号"></p>
+                <p class="normal"><input type="password" id="pwd" placeholder="请输入密码"></p>
+                <p class="remember"><input type="checkbox" name="" id="remember" checked="checked"><label for="remember">一个月内自动登录</label><a href="/user/password" target="_blank">找回密码</a></p>
+                <p><a href="javascript:;" class="btn submit">登录</a></p>
+            </form>
+            <form class="form-reg" style="display:none;">
+                <p style="line-height:32px;color:#000;font-size:14px;font-weight:bold;">注册绑定手机免费体验两小时<a href="http://www.lonlife.cn/node/4073" target="_blank" style="font-weight:100;color:#666;font-size:13px;margin-top:2px;float:right;">如何绑定？</a></p>
+                <p class="normal"><input type="text" id="mail" placeholder="请输入常用邮箱"><label for="mail"></label></p>
+                <p class="normal"><input type="password" id="password" placeholder="设置登录密码"><label for="password"></label></p>
+                <p class="normal"><input type="text" class="check-text" id="check-text" placeholder="输入验证码">
+                 <img alt="点击换图" title="点击换图" id="img_captcha" style="cursor:pointer" backColor="#000" width="80" height="56" src="/index/captcha/v/59710b0c1d559" />                </p>
+                <p class="error-info">
+                <!--注册绑定手机体验两小时-->
+                </p>
+                <p class="agree" style="margin-top:4px"><input type="checkbox" name="" id="agree" checked="checked"><label for="agree">我已阅读并同意《<a href="/policies" target='_blank'>玲珑用户注册协议</a>》</label></p>
+
+                <p><a href="javascript:;" class="btn register">立即注册</a></p>
+            </form>
+        </div>
+    </div>
+    <!-- 页面公共部分 顶部 end -->
+    <script type="text/javascript" src="/js/lonlifenew5/min/index.min.js"></script>
+<!--<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1798475083755402');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent');
+</script>-->
+<link rel="stylesheet" href="/css/lonlifenew5/index.css?v39">
+<style type="text/css">
+    body{
+        overflow-x: hidden;
+    }
+    #nav {
+        height: 109px;
+    }
+    .banner .img {
+        padding-left: 10px;
+    }
+    .banner-center .banner {
+        height: 490px;
+    }
+    .text .ver {
+        float: left;
+        width: 202px;
+        height: 110px;
+        /*margin-bottom: 30px;*/
+    }
+    .text .ver a {
+        display: block;
+        width: 187px;
+        height: 57px;
+        overflow: hidden;
+        margin-bottom: 40px;
+    }
+    .text .ver a.three {
+        background-position: 0 -2px;
+    }
+    .text .ver a.four {
+        background-position: -1px -130px;
+    }
+    .text .ver a.three:hover {
+        background-position: -1px -65px;
+    }
+    .text .ver a.four:hover {
+        background-position: -1px -196px;
+    }
+    .text .ver p,.version-txt {
+        /*默认*/
+        /*color: #3aadce;*/
+        /*5.0*/
+        color:#8f8f8f;
+        /*color:#000;*/
+        line-height: 18px;
+        font-size:12px;
+    }
+    .history-download{
+        color: #fddbd9;
+        margin-left:20px;
+        font-size:12px;
+    }
+    .text h2 small{
+        font-size: 18px;
+    }
+    .banner .text{ width: 530px;}
+    .text .ver{ width: 255px;}
+    .text .ver a{
+        /*background-image:url('/images/shouye_new/at_newip_2.png');*/
+        /*background-image:url('/images/v5/right-btns-v5.png');*/
+        /*background-image:url('/images/v5/right-btns-v5_2.png');*/
+        background-image:url('/images/v5/btns_5.png');
+        /*background-image:url('/images/chrismas/st-btns.png');*/
+        /*background-image:url('/images/2017qrj/btns.png?v2');*/
+        width: 240px;
+        height: 68px;
+        /*height: 78px;*/
+        cursor:pointer;
+    }
+    .text .ver a.three{
+        background-position: 0 0;
+    }
+    .text .ver a.three:hover{
+        /*默认*/
+        /*background-position: 0 -71px;*/
+        /*5.0*/
+        background-position: 0 -68px;
+        /*background-position: 0 -78px;*/
+    }
+    .text .ver a.four{
+        /*height: 80px;*/
+        height: 68px;
+        /*默认*/
+        /*background-position: 0 -142px;*/
+        /*5.0*/
+        background-position: 0 -136px;
+        /*background-position: 0 -156px;*/
+    }
+    .text .ver a.four:hover{
+        /*默认*/
+        /*background-position: 0 -213px;*/
+        /*background-position: 0 -236px;*/
+        /*5.0*/
+        background-position: 0 -204px;
+    }
+    .banner > .text > h2 {
+        width: 530px;
+        height: 90px;
+        /*background: url('/images/shouye_new/text.png') no-repeat;*/
+        /*5.0*/
+        background: url('/images/v5/banner-txt.png') no-repeat;
+        /*background: url('/images/2017dw/banner-txt.png') no-repeat;*/
+        /*background: url('/images/201751/main-txt.png') no-repeat;*/
+    }
+/*51*/
+    /*.nav-box .nav-li a {
+        color: #444952;
+    }*/
+    /*.nav-box .nav-li .sub-nav li a{
+        color: #444952;
+    }*/
+    .logo-box{
+        padding-top:25px;
+    }
+    /*.nav-box .nav-li .sub-nav li a:hover {
+        color: #42d4d3;
+    }*/
+    /*5.0*/
+
+    .nav-box .nav-li .sub-nav li a:hover {
+        color: #27f1d4;
+    }
+    body {
+        margin-top: 120px;
+    }
+    .mod-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        text-align: center;
+    }
+    .mod-top--close {
+        position: absolute;
+        background:url("/images/v5/icon-close.png") center no-repeat;
+        top:18px;
+        right:18.6454333%;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+    }
+</style>
+<div class="mod-top">
+    <a href="http://www.lonlife.cn/act/pbg" target="_blank"><img src="/images/v5/ad.jpg" alt="ad" width="100%" height="120"></a>
+    <div class="mod-top--close"></div>
+</div>
+<script>
+    $('.mod-top--close').on('click',function () {
+        $(this).closest('.mod-top').slideUp();
+        $(document.body).animate({marginTop:0},"linear");
+    })
+</script>
+            <style type="text/css">
+            .background{
+                overflow: hidden;
+                z-index: -1;
+            }
+            .nav-bg-wrap {
+                /*background-image: url('/images/shouye_new/after_guoqing_2.png');*/
+                /*background-image: url('/images/v5/bgv5.jpg');*/
+                /*5.0*/
+                background-image: url('/images/v5/new-banner.jpg');
+                /*background-image: url('/images/2017dw/new-banner.jpg');*/
+                /*background-image: url('/images/201751/bg.jpg');*/
+                /*background-image: url('/images/chrismas/st-banner2.jpg');*/
+                /*background-size:cover;*/
+            }
+            .nav-box .nav-li:hover {
+                /*background: url('/images/shouye_new/after_guoqing_nav_hover.png') repeat-x;*/
+                /*background: url('/images/v5/nav-hover-bg.png') repeat-x;*/
+                /*5.0*/
+                background: url('/images/v5/nav-hover-bg_2.png') repeat-x;
+                /*background: url('/images/201751/nav-hover-bg.png') repeat-x;*/
+                /*background: url('/images/chrismas/st-nav-hover-bg.png') repeat-x;*/
+                /*background: url('/images/2017qrj/nav-hover.png') repeat-x;*/
+            }
+            .background .bg-new{
+                /*background: url('/images/shouye_new/1025/bg1025.png') center -110px no-repeat;*/
+                /*background: url('/images/v5/bgv5.jpg') center -110px no-repeat;*/
+                /*5.0*/
+                background: url('/images/v5/new-banner.jpg')center -110px no-repeat;
+                /*background: url('/images/2017dw/new-banner.jpg')center -110px no-repeat;*/
+                /*background: url('/images/201751/bg.jpg')center -110px no-repeat;*/
+                /*background: url('/images/chrismas/st-banner2.jpg') center -110px no-repeat;*/
+                /*background: url('/images/2017qrj/qrj-bg.jpg') center -110px no-repeat;*/
+                /*background-size:cover;*/
+            }
+            .slide-up{
+                animation: slideUp 1000ms ease-out both;
+                -webkit-animation: slideUp 1000ms ease-out both;
+            }
+            .bounce-up-down1{
+                animation: bounceDownUp 9s linear infinite both;
+                -webkit-animation: bounceDownUp 9s linear infinite both;
+            }
+            .bounce-up-down2{
+                animation: bounceDownUp 12s linear infinite both;
+                -webkit-animation: bounceDownUp 12s linear  infinite both;
+            }
+            .bounce-up-down3{
+                animation: bounceDownUp 8s linear  infinite both;
+                -webkit-animation: bounceDownUp 8s linear infinite both;
+            }
+            .background .shield-ctn{
+                position: absolute;
+                width: 466px;
+                height: 391px;
+                right: 50%;
+                z-index: 1;
+                margin-right: 65px;
+                margin-top: -3px;
+                top:500px;
+            }
+            .shield-ctn div{
+                position: absolute;
+            }
+            .shield-ctn .new-left-inner{
+                background: url('images/shouye_new/1025/new-left-inner2.png');
+                width: 245px;
+                height: 278px;
+                left:50%;
+                margin-left: -115px;
+                top:52px;
+                animation-delay: 120ms;
+            }
+            .shield-ctn .new-left-outer{
+                background: url('images/shouye_new/1025/new-left-outer.png');
+                width: 332px;
+                height: 287px;
+                left:50%;
+                margin-left: -165px;
+                top:100px;
+                animation-delay: 40ms;
+            }
+            .shield-ctn .c-aq{
+                background: url('images/shouye_new/1025/c-aq.png');
+                width: 95px;
+                height: 95px;
+                right: 0;
+                bottom: 0;
+                animation-delay: 120ms;
+            }
+            .shield-ctn .c-wd{
+                background: url('images/shouye_new/1025/c-wd.png');
+                width: 83px;
+                height: 82px;
+                bottom: 47px;
+                left: 0;
+                animation-delay: 80ms;
+            }
+            .shield-ctn .c-sc{
+                background: url('images/shouye_new/1025/c-sc.png');
+                width: 67px;
+                height: 67px;
+                right: 113px;
+                animation-delay: 160ms;
+            }
+            @keyframes  slideUp{
+                0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, -495px, 0);
+                    transform: translate3d(0, -495px, 0);
+                }
+            }
+            @-webkit-keyframes  slideUp{
+                0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, -495px, 0);
+                    transform: translate3d(0, -495px, 0);
+                }
+            }
+            @-webkit-keyframes bounceDownUp {
+                0% {
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+                }
+
+                25% {
+                    -webkit-transform: translate3d(0, 30px, 0);
+                    transform: translate3d(0, 30px, 0);
+                }
+
+                50% {
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+                }
+
+                75% {
+                    -webkit-transform: translate3d(0, -30px, 0);
+                    transform: translate3d(0, -30px, 0);
+                }
+
+                100% {
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+                }
+            }
+            @keyframes bounceDownUp {
+                0% {
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+                }
+
+                25% {
+                    -webkit-transform: translate3d(0, 30px, 0);
+                    transform: translate3d(0, 30px, 0);
+                }
+
+                50% {
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+                }
+
+                75% {
+                    -webkit-transform: translate3d(0, -30px, 0);
+                    transform: translate3d(0, -30px, 0);
+                }
+
+                100% {
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+                }
+            }
+            #demo-canvas{
+                position: absolute;
+                display: block;
+                z-index: 1;
+                top: 10px;
+                right: 50%;
+                margin-right: 430px;
+            }
+            #demo-canvas-2{
+                position: absolute;
+                display: block;
+                z-index: 1;
+                top: 10px;
+                left: 50%;
+                margin-left: 220px;
+            }
+            .chrismas-left{
+                position: absolute;
+                z-index: 11;
+                right:57%;
+                /*margin-right: -45px;*/
+                /*bottom: -3px;*/
+                top: -10px;
+                animation: fly 2s ease infinite;
+
+            }
+
+            @keyframes fly {
+                0%{
+                    top:-10px;
+                }
+                50%{
+                    top:0px;
+                }
+                100%{
+                    top:-10px;
+                }
+            }
+            .v5-ctn{
+                position:absolute;
+                width:472px;
+                height:472px;
+                right: 50%;
+                z-index: 2;
+                top:130px;
+                margin-right: 120px;
+            }
+            .v5-ctn div{
+                position:absolute;
+            }
+            .out-circle{
+                background:url('/images/v5/outer-circle.png') center no-repeat;
+                width:100%;
+                height:100%;
+            }
+            .inner-circle{
+                background:url('/images/v5/inner-circle.png') center no-repeat;
+                width:449px;
+                height:450px;
+                left:11px;
+                top:11px;
+                -webkit-animation: rotate 20s linear infinite;
+                animation: rotate 20s linear infinite;
+            }
+            .out-hezi{
+                background:url('/images/v5/hezi-outer.jpg') center no-repeat;
+                width:256px;
+                height:417px;
+                left:11px;
+                top:-140px;
+                /*top:12px;*/
+                opacity:0;
+                animation:aniDown-l 800ms ease-out both;
+            }
+            .inner-top-hezi{
+                background:url('/images/v5/hezi-top.png?v1') center no-repeat;
+                width:256px;
+                height:242px;
+                left:11px;
+                top:160px;
+                /*top:83px;*/
+                opacity:0;
+                animation:aniUp 800ms ease-out both;
+                animation-delay:300ms;
+            }
+             .inner-bottom-hezi{
+                background:url('/images/v5/hezi-bottom.jpg') center no-repeat;
+                width:229px;
+                height:38px;
+                left:25px;
+                bottom:-55px;
+                /*bottom:22px;*/
+                opacity:0;
+                animation:aniUp 800ms ease-out both;
+                animation-delay:300ms;
+            }
+            .hezi-wrap{
+              left:99px;
+              width:256px;
+              height:417px;
+              top:15px;
+            }
+            @-webkit-keyframes rotate {
+                0%,
+                100% {
+                    -webkit-transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+
+            @keyframes rotate {
+                0%,
+                100% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            @-webkit-keyframes aniUp {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, -77px, 0);
+                    transform: translate3d(0, -77px, 0);
+                    opacity:1;
+                }
+            }
+
+            @keyframes aniUp {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, -77px, 0);
+                    transform: translate3d(0, -77px, 0);
+                    opacity:1;
+                }
+            }
+            @-webkit-keyframes aniUp-l {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, -40px, 0);
+                    transform: translate3d(0, -40px, 0);
+                    opacity:1;
+                }
+            }
+
+            @keyframes aniUp-l {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, -40px, 0);
+                    transform: translate3d(0, -40px, 0);
+                    opacity:1;
+                }
+            }
+            @-webkit-keyframes aniDown {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, 90px, 0);
+                    transform: translate3d(0, 90px, 0);
+                    opacity:1;
+                }
+            }
+
+            @keyframes aniDown {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, 90px, 0);
+                    transform: translate3d(0, 90px, 0);
+                    opacity:1;
+                }
+            }
+            @-webkit-keyframes aniDown-l {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, 152px, 0);
+                    transform: translate3d(0, 152px, 0);
+                    opacity:1;
+                }
+            }
+
+            @keyframes aniDown-l {
+                 0%{
+                    -webkit-transform: translate3d(0, 0px, 0);
+                    transform: translate3d(0, 0px, 0);
+
+                }
+                100%{
+                    -webkit-transform: translate3d(0, 152px, 0);
+                    transform: translate3d(0, 152px, 0);
+                    opacity:1;
+                }
+            }
+        </style>
+         <!--<div class="v5-ctn">
+            <div class="out-circle"></div>
+            <div class="inner-circle"></div>
+            <div class="hezi-wrap">
+                <div class="out-hezi"></div>
+                <div class="inner-top-hezi"></div>
+                <div class="inner-bottom-hezi"></div>
+            </div>
+        </div>-->
+
+        <div class="banner-box-new">
+
+
+
+            <!--默认气泡-->
+            <!--<canvas id="demo-canvas"></canvas>-->
+            <!--<canvas id="demo-canvas-2"></canvas>-->
+            <div class="banner-center">
+                <div class="banner">
+                    <div class="img" style="display:none;">
+                        <!-- 12月28日之后要显示的部分 -->
+                        <img src="/images/shouye_new/a_ban2.gif" alt="" width="460" height="460" class="active" style="position:absolute;top:-59px;left:0;">
+                        <img src="/images/shouye_new/old.png" alt="" width="541" height="344">
+                        <!-- end -->
+                    </div>
+                    <div class="text">
+                        <!-- 12月28日之后要显示的部分 -->
+                        <h2>
+                        </h2>
+                        <!-- end -->
+                        <div class="clearfix">
+                            <div class="ver tver">
+                                <a class="three" href="/d3" target="_blank"></a>
+<!--                                <p>-->
+<!--                                    版本：4.2.0.931 <br>-->
+<!--                                    更新：2016-11-10-->
+<!--                                </p> -->
+
+                            </div>
+                            <div class="ver fver">
+                                <i class="supp"></i>
+                                <!--5.0-->
+                                <a class="four" href="http://www.lonlife.cn/downold" target="_blank"></a>
+                                <!--默认-->
+                                <!--<a class="four" href="/ip" target="_blank"></a>-->
+                            </div>
+                        </div>
+                         <p class="version-txt">
+                                    <!--版本：4.2.0.939 -->
+                                    版本：5.0
+                                    </br>
+                                    更新：2017-03-27
+                            <!--<a class="history-download" href="/download" target="_blank">历史版本下载</a>-->
+                            <a class="history-download" href="/downold" target="_blank">怀旧版本下载</a>
+                                </p>
+                        <!--<p style="margin-top:20px;">-->
+                        <p style="margin-top:7px;">
+                            <!-- 12月28日之后要显示的部 -->
+                            <!--<a href="/download" target="_blank">历史版本下载< /a>-->
+                            <!--<span style="color:#767687;">|</span>-->
+                            <!--<a href="/user/register" target="_blank" style="font-size:14px;color:#fbcccb;font-weight:100;">注册绑定手机免费体验2小时&gt;&gt;</a>-->
+                            <!--默认-->
+                            <!--<a href="/user/register" target="_blank" style="font-size:16px;color:#d3e7fe;">注册绑定手机免费体验2小时&gt;&gt;</a>-->
+                            <!--5.0-->
+                            <!--<a href="/user/register" target="_blank" style="font-size:16px;color:#d7caf1;">注册绑定手机免费体验2小时&gt;&gt;</a>-->
+                            <a href="/user/register" target="_blank" style="font-size:16px;color:#d0d0d1;">注册绑定手机免费体验2小时&gt;&gt;</a>
+                            <!--51-->
+                            <!--<a href="/user/register" target="_blank" style="font-size:14px;color:#7ea0cb;">注册绑定手机免费体验2小时&gt;&gt;</a>-->
+                            <!-- end -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="background">
+
+                    <!--默认官网样式-->
+                    <!--<div class="shield-ctn">
+                        <div class="new-left-inner slide-up"></div>
+                        <div class="new-left-outer slide-up"></div>
+                        <div class="c-aq slide-up"></div>
+                        <div class="c-sc slide-up"></div>
+                        <div class="c-wd slide-up"></div>
+                    </div>-->
+
+                    <!--圣诞节-->
+                <!--<div class="chrismas-left">
+                    <img src="/images/chrismas/st-left.gif" alt="" width="518" height="516" style="width: 518px;height: 516px;display: inline-block;position: relative;z-index: 1">
+                </div>-->
+                <!--<div class="chrismas-left">
+                    <img src="/images/2017qrj/fly.png" alt="" style="display: inline-block;position: relative;z-index: 1;top:10px">
+                </div>-->
+                <div class="bg bg-new">
+                </div>
+<!--            <div class="bg bg-old"></div>-->
+            </div>
+        </div>
+
+        <!--  <div class="layout" >
+             <div class="img-box"> -->
+
+        <!-- <iframe style="display: none;" src="/dalugoubanenr.html"></iframe> -->
+        <!-- <a href = '/new' target = '_blank'><img src=/images/upload/142146001092.png height="360" width="514" alt=""></a>
+            </div>
+            <div class="cont-box">
+                <h1 class="title">玲珑网游加速器</h1>
+                <p class="text">独享高速网络，专业加速网游！</p>
+                                <a class="download-btn" href=/down onClick="_gaq.push(['_trackEvent','Downloads','software','guonei']);"></a>  -->
+        <!-- <a class="tiyan" href="/lonlife" target="_blank"></a> -->
+
+        <!--  <p class="links"><a target='_blank' href="/new" onClick="_gaq.push(['_trackEvent','Downloads','software','guonei']);">3.1.6测试版</a><span>|</span><a href="/green" style='color: #6EA844;'>绿色解压版</a>
+         <span>|</span><a href="/user/register" target='_new' style='color: #6EA844;'>5秒快速注册>></a>
+         </p>
+     </div>
+ </div> -->
+            <div class="characteristic-box layout">
+    <ul>
+        <li>
+            <span class="icon icon-1"></span>
+            <h3 class="tit">速度快</h3>
+            <p class="msg">国内核心城市顶级IDC中转节点，光纤直连，加快国内网络数据至海外核心服务器速度。</p>
+        </li>
+        <div class="v-line line1"></div>
+        <li>
+            <span class="icon icon-2"></span>
+            <h3 class="tit">超稳定</h3>
+            <p class="msg">国内唯一使用独享高速网络加速器厂商。全天低延迟、不丢包，让您在高峰期也能愉快得玩耍。</p>
+        </li>
+        <div class="v-line line2"></div>
+        <li>
+            <a href="http://www.lonlife.cn/tk" target="_blank">
+                <span class="icon icon-3"></span>
+                <h3 class="tit">有保障</h3>
+                <p class="msg">首次购买使用效果不满意，自购买之日起，5天内无条件退款。</p>
+            </a>
+        </li>
+    </ul>
+</div>
+    <div class="activities-box box layout">
+        <h1 class="title"><a class="more" href="/huodong" target="_blank">更多精彩活动</a><strong>近期热门活动</strong></h1>
+        <ul class="list">
+                            <li><a href="http://www.lonlife.cn/act/pbg" target="_blank"><img src="/images/huodong/201707121627525965dd885bbe6.jpg" height="140" width="241" alt="大逃杀活动"></a></li>
+                                <li><a href="https://www.lonlife.cn/node/4300" target="_blank"><img src="/images/huodong/20170506184642590da992c05d8.jpg" height="140" width="241" alt="0"></a></li>
+                                <li><a href="https://www.lonlife.cn/node/4353" target="_blank"><img src="/images/huodong/20170719100634596ebeaac5624.jpg" height="140" width="241" alt="H1Z1开黑就来YY349"></a></li>
+                                <li><a href="http://www.lonlife.cn/gh" target="_blank"><img src="/images/huodong/2016090210380557c8e60d4865f.jpg" height="140" width="241" alt="0"></a></li>
+                        </ul>
+    </div>
+    <div class="hot-games-wrap layout clearfix">
+    <div class="hot-games-box box">
+        <h1 class="title"><a class="more" href="/game" target="_blank">更多游戏</a><strong>热门游戏</strong></h1>
+        <div class="pic-box clearfix">
+            <div class="pic-anim-box">
+                <ul class="list">
+                                            <li class='active'><a href="http://www.lonlife.cn/playbattlegrounds" target="_blank"><img src="/images/upload/149308959132.jpeg" height="292" width="494" alt="绝地求生大逃杀加速器"></a></li>
+                                                <li ><a href="http://www.lonlife.cn/h1z1" target="_blank"><img src="/images/upload/149308959194.jpeg" height="292" width="494" alt="h1z1加速器"></a></li>
+                                                <li ><a href="http://www.lonlife.cn/warcraft3" target="_blank"><img src="/images/upload/147739146469.jpeg" height="292" width="494" alt="魔兽争霸3"></a></li>
+                                                <li ><a href="http://www.lonlife.cn/bf1" target="_blank"><img src="/images/upload/147876981675.png" height="292" width="494" alt="战地1加速器"></a></li>
+                                        </ul>
+                <ul class="btn">
+                    <li class="active"><a href="javascript:;"></a></li>
+                    <li><a href="javascript:;"></a></li>
+                    <li><a href="javascript:;"></a></li>
+                    <li><a href="javascript:;"></a></li>
+                </ul>
+            </div>
+                            <a rel="nofollow"class="pic-b" href="http://bd.youxidudu.com/" target="_blank"><img src="/images/upload/149137877637.jpeg" height="140" width="241" alt="黑沙宝典"></a>
+                                <a rel="nofollow"class="pic-b" href="http://www.igxe.cn/" target="_blank"><img src="/images/upload/149059788124.jpeg" height="140" width="241" alt="IGXE电竞饰品交易所"></a>
+                                <a class="pic-b" href="http://www.lonlife.cn/loltw" target="_blank"><img src="/images/upload/1479539961100.jpeg" height="140" width="241" alt="LOL台服加速器"></a>
+                                <a class="pic-b" href="http://www.lonlife.cn/lekr" target="_blank"><img src="/images/upload/14800556861.jpeg" height="140" width="241" alt="天堂永恒加速器"></a>
+                                <a class="pic-b" href="http://www.lonlife.cn/ty-us" target="_blank"><img src="/images/upload/147953442625.jpeg" height="140" width="241" alt="天谕美服加速器"></a>
+                        </div>
+    </div>
+    <div class="game-news-box">
+        <div class="game-news">
+            <h3><a class="more" href="/article" target="_blank"></a>游戏资讯</h3>
+            <ul class="news-list">
+                                    <li><a href="/node/4355" target="_blank">黑暗与光明公会招募</a></li>
+                                        <li><a href="/node/4354" target="_blank">黑暗与光明体验版上架 用玲珑加速器畅享独特玩法</a></li>
+                                        <li><a href="/node/4352" target="_blank">Albion上架在即 玲珑加速器带玩家畅玩游戏</a></li>
+                                        <li><a href="/node/4351" target="_blank">玩天堂M无法连接服务器怎么解决</a></li>
+                                        <li><a href="/node/4349" target="_blank">我的世界国服不删档测试 玲珑海外版为其加速</a></li>
+                                        <li><a href="/node/4348" target="_blank">王者荣耀台服安装失败怎么办？</a></li>
+                                </ul>
+        </div>
+        <div class="game-news">
+            <h3><a class="more" href="/notice" target="_blank"></a>玲珑公告</h3>
+            <ul class="news-list">
+                                    <li><a href="/node/4341" target="_blank" title='7月6日早上9点维护！！'>7月6日早上9点维护！！                                <i class="new"></i>
+                                </a></li>
+                                        <li><a href="/node/4339" target="_blank" title='华南线路维护（7/4)（已结束）'>华南线路维护（7/4)（已结束）                                <i class="new"></i>
+                                </a></li>
+                                        <li><a href="/node/4295" target="_blank" title='华南线路维护 （已结束）5/26'>华南线路维护 （已结束）5/26</a></li>
+                                        <li><a href="/node/4290" target="_blank" title='中美线路维护公告 4-29'>中美线路维护公告 4-29</a></li>
+                                        <li><a href="/node/4282" target="_blank" title='电信骨干网故障问题 4-15'>电信骨干网故障问题 4-15</a></li>
+                                        <li><a href="/node/4278" target="_blank" title='新加坡线路维护公告 4-14'>新加坡线路维护公告 4-14</a></li>
+                                </ul>
+        </div>
+    </div>
+</div>
+
+<div class="cooperative-partner layout">
+    <h1 class="title">合作伙伴</h1>
+    <p>
+                    <a href="/huodong/expire" target="_blank">玲珑专题</a>
+            <span>|</span>                        <a href="http://loljp.waiplay.com" target="_blank">lol日服</a>
+            <span>|</span>                        <a href="http://www.lolmf.com/" target="_blank">lol美服</a>
+            <span>|</span>                        <a href="http://wot.tgbus.com/" target="_blank">坦克世界</a>
+            <span>|</span>                        <a href="http://ps4.tgbus.com/" target="_blank">PS4中文网</a>
+            <span>|</span>                        <a href="http://sc2.178.com/" target="_blank">星际争霸2</a>
+            <span>|</span>                        <a href="http://soft.anruan.com" target="_blank">安卓软件下载</a>
+            <span>|</span>                        <a href="http://blzz.gao7.com/" target="_blank">部落冲突</a>
+            <span>|</span>                        <a href="http://www.lkgame.com" target="_blank">老k游戏</a>
+            <span>|</span>                        <a href="http://bns.yzz.cn/" target="_blank">剑灵</a>
+            <span>|</span>                        <a href="http://www.pk995.com/" target="_blank">永恒狂刀</a>
+            <span>|</span>                        <a href="http://www.cpplay.com" target="_blank">手机单机游戏</a>
+            <span>|</span>                        <a href="http://www.a9vg.com/" target="_blank">A9VG</a>
+            <span>|</span>                        <a href="http://www.guopan.cn/" target="_blank">好玩的手机游戏</a>
+            <span>|</span>                        <a href="http://www.tvapk.com/" target="_blank">电视之家</a>
+            <span>|</span>                        <a href="http://mc.ahgame.com/" target="_blank">我的世界</a>
+            <span>|</span>                        <a href="http://9yin2.waiplay.com/" target="_blank">九阴真经2 </a>
+            <span>|</span>                        <a href="http://www.jisuxia.com/" target="_blank">极速下载 </a>
+            <span>|</span>                        <a href="http://www.igxe.cn/" target="_blank">IGXE电竞饰品交易所</a>
+            <span>|</span>                        <a href="http://fz.waiplay.com" target="_blank">方舟方块世界</a>
+            <span>|</span>                        <a href="http://pbg.waiplay.com/" target="_blank">绝地求生大逃杀</a>
+                            </p>
+</div>
+    <!--<script src = "/js/lonlifenew5/banner1026.js" ></script>-->
+    <!--[if lte IE 9]>
+    <script>
+        //$('.c-aq').css('top',-198);
+        //$('.c-sc').css('top',-495);
+        //$('.c-wd').css('top',-232);
+        //$('.new-left-inner').css('top',-445);
+        //$('.new-left-outer').css('top',-400);
+        //$('.out-hezi').css('top',12);
+        //$('.out-hezi').css('opacity',1);
+        //$('.inner-top-hezi').css('top',83);
+        //$('.inner-top-hezi').css('opacity',1);
+        //$('.inner-bottom-hezi').css('bottom',22);
+        //$('.inner-bottom-hezi').css('opacity',1);
+    </script>
+    <![endif]-->
+    <script>
+    //     setTimeout(function () {
+    //         $('.background').css("overflow","visible");
+    //         $('.c-aq').removeClass('slide-up');
+    //         $('.c-aq').css('top',-198);
+    //         $('.c-aq').addClass('bounce-up-down1');
+    //         $('.c-sc').removeClass('slide-up');
+    //         $('.c-sc').css('top',-495);
+    //         $('.c-sc').addClass('bounce-up-down2');
+    //         $('.c-wd').removeClass('slide-up');
+    //         $('.c-wd').css('top',-232);
+    //         $('.c-wd').addClass('bounce-up-down3');
+    //    },1300);
+</script>
+
+    <!-- 页面公共部分 底部 begin -->
+    <div class="footer-box">
+        <div class="layout clearfix">
+            <div class="footer-logo"></div>
+            <div class="cont-box">
+                <p class="links"><a href="/contactus" target="_blank">关于玲珑</a><span>|</span><a href="/" target="_blank">玲珑加速器</a><span>|</span><a href="/pay" target="_blank">开通/续费</a><span>|</span><a href="/game" target="_blank">支持游戏</a><span>|</span><a href="/faq" target="_blank">帮助中心</a><span>|</span><a href="/contactus/joinus" target="_blank">人才招聘</a><span>|</span><a href="/contactus/contactus" target="_blank">联系我们</a><span>|</span><a
+                        href="http://www.ifrog.cc" target="_blank">玲珑学院</a></p>
+                <p class="copyright"><span>版权所有：lonlife网游加速器</span>
+					<span>
+						<a id='beian' href='http://www.miitbeian.gov.cn/' target='_blank'>豫ICP备14018944号-1</a>					</span>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41010502002105" target="_blank"><span><img src="/images/beian.png" style="position: relative; top: 5px;"> 豫公网安备 41010502002105号</span></a>
+				</p>
+                <p class="others">商业合作：<a href="mailto:coop@lonlife.cn">coop@lonlife.cn</a>投诉建议：<a href="mailto:tousu@lonlife.cn">tousu@lonlife.cn</a>
+                                 </p>
+            </div>
+            <div class="attention-box">
+                <wb:follow-button uid="2248377051" type="gray_2" style="position: absolute;right: 90px;top: 22px;height: 40px;overflow: hidden;" ></wb:follow-button>
+                <!-- <img src="/images/lonlifenew5/weixin.jpg" height="107" width="91" alt=""> -->
+            </div>
+        </div>
+    </div>
+    <!--飘窗控制-->
+    <a href="http://www.lonlife.cn/mobile/test" target="_blank" class="float-win "><img src="/images/float/float_飘窗(1).png" alt="玲珑手游加速器内测版下载"></a>    <!--提示送时间弹窗-->
+    <div id="sendTime" class="st-dg-modal">
+        <div class="st-dg-modal-header">
+            <button class="st-dg-close" type="button">&times;</button>
+            <h3 class="st-dg-modal-title">欢迎老朋友回归</h3>
+        </div>
+        <div class="st-dg-modal-body">
+            <p class="st-dg-info">
+            您已经离开玲珑<span id="stLeave">x</span>天了，为方便您感受玲珑最新的加速效果，我们为您的账号增加了<span id="stBonus">x</span>天时间，欢迎体验。
+            </p>
+
+            <a href="http://www.lonlife.cn/down2016" target="_blank" class="st-dg-btn">下载客户端</a>
+            <button type="button" class="st-dg-btn">确定</button>
+        </div>
+    </div>
+    <div class="st-dg-modal-overlay"></div>
+<!--    -->    <div class="kefu-ol j-kefu-btn">
+        <img src="/images/lonlifenew5/kefu1001.png?v=1" alt="">
+    </div>
+<!--    -->    <!-- 万圣节飘窗 start-->
+<!--<a class="wsj-ol" href="/node/4009" target="_blank">-->
+<!--    <img src="/images/shouye_new/wanshengjie.png?v=1" alt="">-->
+<!--</a>-->
+    <!-- 万圣节飘窗 end -->
+<!-- 元旦飘窗 start-->
+<!--
+<a href="http://www.lonlife.cn/newYear" target="_blank" style="position: fixed;left: 0;top:50%;margin-top: -118px;z-index: 999">
+    <span href="" id="ydClose" style="display: inline-block;width:30px;height: 30px;position: absolute;right: 0;top: 0;"></span>
+    <img src="/images/2017yuandan.png?v=1" alt="">
+</a>
+    <script>
+        $('#ydClose').on('click',function (e) {
+            e.preventDefault();
+            $(this).parent('a').hide()
+        })
+    </script> -->
+    <!-- 元旦飘窗 end -->
+            <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-10089160-45', 'auto');
+        ga('send', 'pageview');
+
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?a59e015eba8c327f0bf2c68387b67df6";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+<!-- UserLocation: -->
+<!-- 企业QQ start-->
+<!--
+<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODA2NzczN18xNTMxOThfNDAwMTA3MDAxN18"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+-->
+<!-- Start of KF5 supportbox script -->
+<!-- <script src="//assets.kf5.com/supportbox/main.js" id="kf5-provide-supportBox" kf5-domain="lonlife.kf5.com"></script> -->
+<!-- End of KF5 supportbox script -->
+
+<!-- 注释53kf -->
+<!-- <script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=9007615&#38;style=1'></script> -->
+<!-- 企业QQ end-->
+
+
+
+
+<!-- 美洽网站客服系统 -->
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[a] = m[a] || function() {
+            (m[a].a = m[a].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = i + '?v=' + new Date().getUTCDate();
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+    _MEIQIA('entId', 10010);
+    // 设置自定义数据
+    _MEIQIA('metadata', {
+        name: "免费用户", // 美洽默认字段
+        "用户信息": "http://c.lonlife.org/user/list?name=免费用户", // 美洽默认字段
+        "加速信息": "http://c.lonlife.org/online-user/list?username=user.username|免费用户", // 美洽默认字段
+        '授信类型': "错误",
+        '付费类型': "免费", // 付费信息: 付费/免费
+        '产品类型': "", // 产品类型
+        'IP': "http://www.ip138.com/ips138.asp?ip=183.240.25.104,", // IP来自
+        'IP所在地': "114.67.36.188", // IP来自
+        '到期时间': "", // 到期时间
+        '剩余时间': "0小时", // 剩余时间
+        '加速游戏': "", // 加速游戏
+    });
+    _MEIQIA('allSet', function () {
+        $('#MEIQIA-BTN-HOLDER').hide();
+    });
+</script>
+<style media="screen">
+    .m-gh{ position: fixed; top: 50%; margin-top: -126px; left: 2px; z-index: 10;}
+    .m-gh .btn{ display: block; width: 147px; height: 293px; background: url('/images/images-dep/index/ip-mem.png?v=1') no-repeat;}
+    .m-gh .close{ position: absolute; top: 0; right: 0; display: block; width: 22px; height: 23px;}
+</style>
+<!--<div class="m-gh j-gh">
+    <a href="javascript:;" class="close"></a>
+    <a href="http://www.lonlife.cn/indep/show" class="btn" target="_blank"></a>
+</div>
+<script type="text/javascript">
+    var $gh=$('.j-gh');
+    var $close=$gh.find('.close');
+    $close.click(function(){
+        $gh.remove();
+    });
+</script>-->
+
+<link rel="stylesheet" href="/css/chat_version2/popups.css?v4">
+<div class="box-bg" style="display:none;"></div>
+<div class="consult" style="display:none;" online="false">
+    <p class="info">本周热门咨询<a href="javascript:;" class="close"></a></p>
+    <div class="consult-box">
+        <div class="consult-cont">
+        </div>
+<!--        <a href="javascript:;" class="btn-status btn-online">没有您关注的问题？立即咨询在线客服</a>-->
+        <a href="javascript:;" class="btn-status btn-online">>>>>>点击这里咨询在线客服<<<<<</a>
+    </div>
+</div>
+
+<script type='text/javascript'>
+$(function () {
+    $('.consult-cont').on('click', '.cls li', function () {
+      var index = $(this).index();
+
+      $(this).addClass('on').siblings().removeClass('on');
+      $('.consult-cont .con ul').hide().eq(index).show();
+    });
+
+    $('.j-kefu-btn').click(function () {
+//        $.post('/api/robot/get_robot', function(data) {
+//            if (data.code == '0') {
+//                console.log(data.result.question);
+                $('.consult-box .consult-cont').html('<div class="tit"><ul class="cls"><li class="on">热门问题</li>' +
+                    '<li class="">产品类型</li><li class="">游戏相关</li>' +
+                    '<li class="">售后保障</li></ul></div><div class="con"><ul style="display: block;" class="hot-qa">' +
+                    '<li><span>1</span><p><a href="http://www.lonlife.cn/node/4073" target="_blank" textvalue="如何试用"  style="font-weight: bold;">如何试用</a></p></li>' +
+                    '<li><span>2</span><p><a href="http://www.lonlife.cn/node/1677" target="_blank" textvalue="使用玲珑后，游戏的延迟范围" class="qa-red">使用玲珑后，游戏的延迟范围</a></p></li>' +
+                    '<li><span>3</span><p><a href="http://www.lonlife.cn/node/4088" target="_blank" textvalue="人在国外玩国服游戏应该购买哪个会员" class="qa-red">玩儿XX游戏，该买什么会员</a></p></li>' +
+                    '<li><span>4</span><p><a href="http://www.lonlife.cn/node/2978" target="_blank" textvalue="普通、高级、海外、独享会员的区别" class="qa-red">普通、高级、海外、独享会员的区别</a></p></li>' +
+                    '<li><span>5</span><p><a href="http://www.lonlife.cn/l3" target="_blank" textvalue="驱动加载失败及缺少.NET问题请点击" style="text-decoration:underline;font-weight:bolder">驱动加载失败及缺少.NET问题</a></p></li>' +
+                    '</ul><ul style="display: none;"><li><span>1</span><p><a href="http://lonlife.cn/node/2978" target="_blank">高级会员与普通会员区别</a></p></li><li><span>2</span><p><a href="http://lonlife.cn/pay" target="_blank">交易方式-网银、支付宝、财付通、Paypal</a></p></li><li><span>3</span><p><a href="http://lonlife.cn/pay" target="_blank">普通会员：(人在大陆)加速国服，美服，澳服，港台，日韩服</a></p></li><li><span>4</span><p><a href="http://lonlife.cn/pay" target="_blank">海外会员：(人在海外)包含高级权限，加</a><a href="http://lonlife.cn/pay" target="_blank" style="white-space: normal;">速</a>国服/非国服</p></li><li><span>5</span><p>' +
+                    '<a href="http://lonlife.cn/pay" target="_blank">高级会员：(人在大陆)包含普通权限，另可加速欧服及封IP游戏</a></p></li></ul><ul style="display: none;"><li><span>1</span><p><a href="http://lonlife.cn/" target="_blank" textvalue="找不到所玩游戏请联系客服添加">找不到所玩游戏请联系客服添加</a></p></li><li><span>2</span><p><a href="http://lonlife.cn/game/all" target="_blank">支持游戏列表</a></p></li><li><span>3</span><p><a href="http://lonlife.cn/game/china" target="_blank">国服游戏</a></p></li><li><span>4</span><p><a href="http://lonlife.cn/game/hk" target="_blank">港台游戏</a>' +
+                    '</p></li><li><span>5</span><p><a href="http://lonlife.cn/game/usa" target="_blank">欧美游戏</a></p></li></ul><ul style="display: none;"><li><span>1</span><p><a href="http://lonlife.cn/faq/refund" target="_blank">5天退款保障</a></p></li><li><span>2</span><p><a href="http://lonlife.cn/faq/refund" target="_blank">提交退款后5个工作日完成退款</a></p></li><li><span>3</span><p><a href="http://lonlife.cn/node/2023" target="_blank">如何查收退款款项</a></p></li><li><span>4</span><p>' +
+                    '<a href="http://www.lonlife.cn/node/2002" target="_blank">退款款项退至原交易账户</a></p></li></ul></div>');
+
+                $('.box-bg').show();
+                $('.consult').show();
+//            }
+//        });
+    });
+
+    $('.consult .close').click(close);
+
+    $('.consult .btn-status').click(function () {
+        if ($('#j-login-bar .login').length) {
+            //window.location.href = '/user/login';
+            $(".user-box-bg").show(), $("#user-box").show(); //new
+            return;
+        }
+
+        close();
+        $('#MEIQIA-BTN-HOLDER').show();
+        _MEIQIA._SHOWPANEL();
+    });
+
+    function close() {
+        $('.box-bg').hide();
+        $('.consult').hide();
+    }
+    // 当路由为l1时自动打开客服窗口
+    if(location.pathname == '/l1'){
+        $('.j-kefu-btn').trigger('click');
+    }
+    $('.st-dg-close,.st-dg-btn').on('click',function(){
+        $("#sendTime").hide();
+        $('.st-dg-modal-overlay').removeClass('st-dg-in');
+    })
+    if($('#return_user').length){
+        var leaveDays = $('#return_user').data('expire');
+        var bonusDays = $('#return_user').data('send');
+        $('#sendTime').show();
+        $('.st-dg-modal-overlay').addClass('st-dg-in');
+        $('#sendTime #stLeave').html(leaveDays);
+        $('#sendTime #stBonus').html(bonusDays);
+    }
+});
+</script>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+jQuery(function($) {
+jQuery('#img_captcha').after("<a id=\"img_captcha_button\" href=\"\/index\/captcha\/refresh\/1\">\u6362\u4e00\u5f20<\/a>");
+jQuery(document).on('click', '#img_captcha_button, #img_captcha', function(){
+	jQuery.ajax({
+		url: "\/index\/captcha\/refresh\/1",
+		dataType: 'json',
+		cache: false,
+		success: function(data) {
+			jQuery('#img_captcha').attr('src', data['url']);
+			jQuery('body').data('captcha.hash', [data['hash1'], data['hash2']]);
+		}
+	});
+	return false;
+});
+
+});
+/*]]>*/
+</script>
+</body>
+</html>

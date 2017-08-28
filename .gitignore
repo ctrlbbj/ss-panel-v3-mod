@@ -5,3 +5,7 @@ composer.phar
 public/.user.ini
 storage/*
 config/.config.php
+config/.config.php.save
+config/.config.php.save.1
+public/userNode.php
+ssr-download/

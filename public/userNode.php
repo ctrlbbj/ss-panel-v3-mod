@@ -13,7 +13,7 @@ $email = $_POST['email'];
 $userid = intval($userid)?$userid:"0";
 
 
-$connection = new mysqli("localhost", "users", "password", "sspanel");
+$connection = new mysqli("localhost", "sspanel", "FdWxGKt8oUCQ1ZJI", "sspanel");
 
 if ($connection->connect_error) {
     die('Connection failed: '. $connection->connect_error);
